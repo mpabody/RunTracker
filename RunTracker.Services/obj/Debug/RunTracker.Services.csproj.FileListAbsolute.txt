@@ -1,0 +1,16 @@
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\RunTracker.Services.dll.config
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\RunTracker.Services.dll
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\RunTracker.Services.pdb
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\EntityFramework.dll
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\EntityFramework.SqlServer.dll
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\EntityFramework.xml
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\EntityFramework.SqlServer.xml
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\obj\Debug\RunTracker.Services.csprojAssemblyReference.cache
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\obj\Debug\RunTracker.Services.csproj.CoreCompileInputs.cache
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\obj\Debug\RunTracker.Services.csproj.CopyComplete
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\obj\Debug\RunTracker.Services.dll
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\obj\Debug\RunTracker.Services.pdb
