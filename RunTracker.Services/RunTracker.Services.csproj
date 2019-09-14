@@ -61,5 +61,15 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RunTracker.Data\RunTracker.Data.csproj">
+      <Project>{79586673-986E-4BCE-A702-09B4DD2DE3B7}</Project>
+      <Name>RunTracker.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RunTracker.Models\RunTracker.Models.csproj">
+      <Project>{99FDBAFE-326D-400F-8FA5-2CA067B29D94}</Project>
+      <Name>RunTracker.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
