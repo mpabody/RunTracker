@@ -16,7 +16,7 @@ namespace RunTracker.Models
 
         [Required]
         [MinLength(3, ErrorMessage = "Please enter at leaset 3 characters.")]
-        [MaxLength(20, ErrorMessage = "There are too many characters in this field.")]
+        [MaxLength(40, ErrorMessage = "There are too many characters in this field.")]
         public string Name { get; set; }
     }
 }

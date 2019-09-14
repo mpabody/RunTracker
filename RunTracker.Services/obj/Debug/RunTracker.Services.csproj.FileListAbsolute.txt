@@ -14,3 +14,9 @@ C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\o
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\obj\Debug\RunTracker.Services.csproj.CopyComplete
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\obj\Debug\RunTracker.Services.dll
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\obj\Debug\RunTracker.Services.pdb
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\RunTracker.Data.dll
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\RunTracker.Models.dll
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\RunTracker.Data.pdb
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\RunTracker.Data.dll.config
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\RunTracker.Models.pdb
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Services\bin\Debug\RunTracker.Models.dll.config
