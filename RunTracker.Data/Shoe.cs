@@ -21,6 +21,8 @@ namespace RunTracker.Data
         [Required]
         public Guid UserID { get; set; }
 
+        public double? MilesRun { get; set; }
+
         // maybe add nickname or type (ex. "racing flat")
     }
 }
