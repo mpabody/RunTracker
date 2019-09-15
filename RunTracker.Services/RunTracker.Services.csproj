@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoeServices.cs" />
+    <Compile Include="WorkoutServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

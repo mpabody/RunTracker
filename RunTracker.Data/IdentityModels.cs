@@ -33,6 +33,7 @@ namespace BlueBadgeRunTracker.Data
         }
 
         public DbSet<Shoe> Shoes { get; set; }
+        public DbSet<Workout> Workouts { get; set; }
     }
 
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
