@@ -60,6 +60,9 @@
     <Compile Include="ShoeEdit.cs" />
     <Compile Include="ShoeListItem.cs" />
     <Compile Include="WorkoutCreate.cs" />
+    <Compile Include="WorkoutDetail.cs" />
+    <Compile Include="WorkoutEdit.cs" />
+    <Compile Include="WorkoutListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
