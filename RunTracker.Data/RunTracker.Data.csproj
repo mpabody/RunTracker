@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201909141637323_SecondMigration.Designer.cs">
       <DependentUpon>201909141637323_SecondMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909160250361_WorkoutTable.cs" />
+    <Compile Include="Migrations\201909160250361_WorkoutTable.Designer.cs">
+      <DependentUpon>201909160250361_WorkoutTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shoe.cs" />
@@ -85,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909141637323_SecondMigration.resx">
       <DependentUpon>201909141637323_SecondMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909160250361_WorkoutTable.resx">
+      <DependentUpon>201909160250361_WorkoutTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

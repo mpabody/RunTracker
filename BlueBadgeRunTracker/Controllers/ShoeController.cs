@@ -116,7 +116,7 @@ namespace BlueBadgeRunTracker.Controllers
 
             service.DeleteShoe(id);
 
-            TempData["SaveResult"] = "Your note was deleted.";
+            TempData["SaveResult"] = "Your shoe was deleted.";
 
             return RedirectToAction("Index");
         }
