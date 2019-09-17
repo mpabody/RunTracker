@@ -10,7 +10,7 @@ namespace RunTracker.Data
     public class Shoe
     {
         [Key]
-        public int ID { get; set; }
+        public int ShoeID { get; set; }
 
         [Required]
         public string Brand { get; set; }
@@ -21,8 +21,6 @@ namespace RunTracker.Data
         [Required]
         public Guid UserID { get; set; }
 
-        //public double? MilesRun { get; set; }
-
-        // maybe add nickname or type (ex. "racing flat")
+        public double? MilesRun { get; set; }
     }
 }

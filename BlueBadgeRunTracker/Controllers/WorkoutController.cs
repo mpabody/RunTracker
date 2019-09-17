@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using BlueBadgeRunTracker.Data;
+using Microsoft.AspNet.Identity;
 using RunTracker.Models;
 using RunTracker.Services;
 using System;
@@ -11,6 +12,8 @@ namespace BlueBadgeRunTracker.Controllers
 {
     public class WorkoutController : Controller
     {
+        private ApplicationDbContext _db = new ApplicationDbContext();
+
         // GET: Workout
         public ActionResult Index()
         {
@@ -24,6 +27,8 @@ namespace BlueBadgeRunTracker.Controllers
         // GET : Create
         public ActionResult Create()
         {
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID","Shoe");
+
             return View();
         }
 
@@ -41,6 +46,8 @@ namespace BlueBadgeRunTracker.Controllers
                 TempData["SaveResult"] = "Your workout was created.";
                 return RedirectToAction("Index");
             };
+
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Shoe");
 
             return View(model);
         }

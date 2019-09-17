@@ -14,3 +14,6 @@ C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Models\obj
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Models\obj\Debug\RunTracker.Models.csproj.CopyComplete
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Models\obj\Debug\RunTracker.Models.dll
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Models\obj\Debug\RunTracker.Models.pdb
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Models\bin\Debug\RunTracker.Data.dll
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Models\bin\Debug\RunTracker.Data.pdb
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Models\bin\Debug\RunTracker.Data.dll.config

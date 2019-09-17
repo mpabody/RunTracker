@@ -55,21 +55,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\201909130011033_InitialCreate.cs" />
-    <Compile Include="Migrations\201909130011033_InitialCreate.Designer.cs">
-      <DependentUpon>201909130011033_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201909170007233_InitialCreate.cs" />
+    <Compile Include="Migrations\201909170007233_InitialCreate.Designer.cs">
+      <DependentUpon>201909170007233_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201909141309327_FirstMigration.cs" />
-    <Compile Include="Migrations\201909141309327_FirstMigration.Designer.cs">
-      <DependentUpon>201909141309327_FirstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909141637323_SecondMigration.cs" />
-    <Compile Include="Migrations\201909141637323_SecondMigration.Designer.cs">
-      <DependentUpon>201909141637323_SecondMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909160250361_WorkoutTable.cs" />
-    <Compile Include="Migrations\201909160250361_WorkoutTable.Designer.cs">
-      <DependentUpon>201909160250361_WorkoutTable.cs</DependentUpon>
+    <Compile Include="Migrations\201909171952597_AddedProperties.cs" />
+    <Compile Include="Migrations\201909171952597_AddedProperties.Designer.cs">
+      <DependentUpon>201909171952597_AddedProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,17 +73,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909130011033_InitialCreate.resx">
-      <DependentUpon>201909130011033_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909170007233_InitialCreate.resx">
+      <DependentUpon>201909170007233_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909141309327_FirstMigration.resx">
-      <DependentUpon>201909141309327_FirstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909141637323_SecondMigration.resx">
-      <DependentUpon>201909141637323_SecondMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909160250361_WorkoutTable.resx">
-      <DependentUpon>201909160250361_WorkoutTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909171952597_AddedProperties.resx">
+      <DependentUpon>201909171952597_AddedProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

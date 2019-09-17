@@ -45,7 +45,7 @@ namespace RunTracker.Services
                         s =>
                             new ShoeListItem
                             {
-                                ID = s.ID,
+                                ID = s.ShoeID,
                                 Name = s.Name
                             }
                         );
@@ -60,11 +60,11 @@ namespace RunTracker.Services
                 var entity =
                     _db
                         .Shoes
-                        .Single(s => s.ID == id && s.UserID == _userID);
+                        .Single(s => s.ShoeID == id && s.UserID == _userID);
                 return
                     new ShoeDetail
                     {
-                        ID = entity.ID,
+                        ID = entity.ShoeID,
                         Brand = entity.Brand,
                         Name = entity.Name
                     };
@@ -78,7 +78,7 @@ namespace RunTracker.Services
                 var entity =
                     _db
                         .Shoes
-                        .Single(s => s.ID == model.ID && s.UserID == _userID);
+                        .Single(s => s.ShoeID == model.ID && s.UserID == _userID);
 
                 entity.Brand = model.Brand;
                 entity.Name = model.Name;
@@ -94,7 +94,7 @@ namespace RunTracker.Services
                 var entity =
                     _db
                         .Shoes
-                        .Single(s => s.ID == id && s.UserID == _userID);
+                        .Single(s => s.ShoeID == id && s.UserID == _userID);
 
                 _db.Shoes.Remove(entity);
 

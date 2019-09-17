@@ -27,7 +27,8 @@ namespace RunTracker.Services
                     Date = model.Date,
                     Distance = model.Distance,
                     CompletionTime = model.CompletionTime,
-                    Comments = model.Comments
+                    Comments = model.Comments,
+                    ShoeID = model.ShoeID
                 };
 
             using (var _db = new ApplicationDbContext())
