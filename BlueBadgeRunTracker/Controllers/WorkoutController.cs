@@ -27,7 +27,7 @@ namespace BlueBadgeRunTracker.Controllers
         // GET : Create
         public ActionResult Create()
         {
-            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID","Shoe");
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID","Name");
 
             return View();
         }
