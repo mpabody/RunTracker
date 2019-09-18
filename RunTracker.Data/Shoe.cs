@@ -21,6 +21,20 @@ namespace RunTracker.Data
         [Required]
         public Guid UserID { get; set; }
 
-        public double? MilesRun { get; set; }
+        public virtual ICollection<Workout> Workouts { get; set; }
+
+        public double? MilesRun
+        {
+            get
+            {
+                double totalMiles = 0;
+                foreach (var workout in Workouts)
+                {
+                    totalMiles += workout.Distance;
+                }
+                return totalMiles;
+            }
+        }
+        
     }
 }

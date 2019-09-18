@@ -66,7 +66,8 @@ namespace RunTracker.Services
                     {
                         ID = entity.ShoeID,
                         Brand = entity.Brand,
-                        Name = entity.Name
+                        Name = entity.Name,
+                        MilesRun = entity.MilesRun
                     };
             }
         }

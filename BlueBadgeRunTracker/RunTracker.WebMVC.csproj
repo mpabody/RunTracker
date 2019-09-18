@@ -238,11 +238,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shoe\Index.cshtml" />
     <Content Include="Views\Shoe\Create.cshtml" />
-    <Content Include="Views\Shoe\Details.cshtml" />
     <Content Include="Views\Shoe\Edit.cshtml" />
     <Content Include="Views\Shoe\Delete.cshtml" />
     <Content Include="Views\Workout\Create.cshtml" />
     <Content Include="Views\Workout\Index.cshtml" />
+    <Content Include="Views\Workout\Edit.cshtml" />
+    <Content Include="Views\Workout\Delete.cshtml" />
+    <Content Include="Views\Shoe\Details.cshtml" />
+    <Content Include="Views\Workout\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

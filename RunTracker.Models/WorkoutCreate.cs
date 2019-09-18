@@ -16,6 +16,7 @@ namespace RunTracker.Models
         public DateTime Date { get; set; }
 
         [Required]
+        [Display(Name ="Distance (Miles)")]
         public double Distance { get; set; }
 
         [Required]

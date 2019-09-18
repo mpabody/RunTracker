@@ -14,6 +14,7 @@ namespace RunTracker.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
+        [Display(Name ="Distance (Miles)")]
         public double Distance { get; set; }
     }
 }

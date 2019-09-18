@@ -47,7 +47,7 @@ namespace BlueBadgeRunTracker.Controllers
                 return RedirectToAction("Index");
             };
 
-            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Shoe");
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
 
             return View(model);
         }

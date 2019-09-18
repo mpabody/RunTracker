@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201909171952597_AddedProperties.Designer.cs">
       <DependentUpon>201909171952597_AddedProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909180054264_NewMigration.cs" />
+    <Compile Include="Migrations\201909180054264_NewMigration.Designer.cs">
+      <DependentUpon>201909180054264_NewMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shoe.cs" />
@@ -78,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909171952597_AddedProperties.resx">
       <DependentUpon>201909171952597_AddedProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909180054264_NewMigration.resx">
+      <DependentUpon>201909180054264_NewMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
