@@ -16,8 +16,7 @@ namespace RunTracker.Data
         [ForeignKey("Shoe")]
         public int ShoeID { get; set; }
         public virtual Shoe Shoe { get; set; }
-
-
+        
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }

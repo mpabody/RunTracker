@@ -55,14 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShoeCreate.cs" />
-    <Compile Include="ShoeDetail.cs" />
-    <Compile Include="ShoeEdit.cs" />
-    <Compile Include="ShoeListItem.cs" />
-    <Compile Include="WorkoutCreate.cs" />
-    <Compile Include="WorkoutDetail.cs" />
-    <Compile Include="WorkoutEdit.cs" />
-    <Compile Include="WorkoutListItem.cs" />
+    <Compile Include="ShoeModels\ShoeCreate.cs" />
+    <Compile Include="ShoeModels\ShoeDetail.cs" />
+    <Compile Include="ShoeModels\ShoeEdit.cs" />
+    <Compile Include="ShoeModels\ShoeListItem.cs" />
+    <Compile Include="WorkoutModels\WorkoutCreate.cs" />
+    <Compile Include="WorkoutModels\WorkoutDetail.cs" />
+    <Compile Include="WorkoutModels\WorkoutEdit.cs" />
+    <Compile Include="WorkoutModels\WorkoutListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

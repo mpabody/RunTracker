@@ -28,7 +28,7 @@ namespace RunTracker.Services
                     Distance = model.Distance,
                     CompletionTime = model.CompletionTime,
                     Comments = model.Comments,
-                    ShoeID = model.ShoeID
+                    Shoe = model.Shoe
                 };
 
             using (var _db = new ApplicationDbContext())
@@ -50,7 +50,9 @@ namespace RunTracker.Services
                             {
                                 ID = w.ID,
                                 Date = w.Date,
-                                Distance = w.Distance
+                                Distance = w.Distance,
+                                ShoeID = w.ShoeID,
+                                Shoe = w.Shoe
                             }
                     );
                 return query.ToList();
@@ -72,7 +74,9 @@ namespace RunTracker.Services
                         Date = entity.Date,
                         Distance = entity.Distance,
                         CompletionTime = entity.CompletionTime,
-                        Comments = entity.Comments
+                        Comments = entity.Comments,
+                        ShoeID = entity.ShoeID,
+                        Shoe = entity.Shoe
                     };
             }
 
@@ -90,6 +94,8 @@ namespace RunTracker.Services
                 entity.Distance = model.Distance;
                 entity.CompletionTime = model.CompletionTime;
                 entity.Comments = model.Comments;
+                entity.ShoeID = model.ShoeID;
+                entity.Shoe = model.Shoe;
 
                 return _db.SaveChanges() == 1;
             }

@@ -17,6 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Distance)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shoe)
+        </th>
         <th></th>
     </tr>
 
@@ -27,6 +30,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Distance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shoe.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

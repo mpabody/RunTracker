@@ -27,7 +27,7 @@ namespace BlueBadgeRunTracker.Controllers
         // GET : Create
         public ActionResult Create()
         {
-            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID","Name");
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
 
             return View();
         }
@@ -37,7 +37,11 @@ namespace BlueBadgeRunTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(WorkoutCreate model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
+                return View(model);
+            }
 
             var service = CreateWorkoutService();
 
@@ -58,6 +62,7 @@ namespace BlueBadgeRunTracker.Controllers
             var service = CreateWorkoutService();
             var model = service.GetWorkoutByID(id);
 
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name", model.ShoeID);
             return View(model);
         }
 
@@ -73,8 +78,12 @@ namespace BlueBadgeRunTracker.Controllers
                     Date = detail.Date,
                     Distance = detail.Distance,
                     CompletionTime = detail.CompletionTime,
-                    Comments = detail.Comments
+                    Comments = detail.Comments,
+                    ShoeID = detail.ShoeID,
+                    Shoe = detail.Shoe
                 };
+
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name", model.ShoeID);
 
             return View(model);
         }
@@ -84,6 +93,8 @@ namespace BlueBadgeRunTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, WorkoutEdit model)
         {
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name", model.ShoeID);
+
             if (!ModelState.IsValid) return View(model);
 
             if (model.ID != id)
