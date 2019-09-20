@@ -63,7 +63,7 @@ namespace BlueBadgeRunTracker.Controllers
             var model =
                 new ShoeEdit
                 {
-                    ID = detail.ID,
+                    ShoeID = detail.ShoeID,
                     Brand = detail.Brand,
                     Name = detail.Name
                 };
@@ -78,7 +78,7 @@ namespace BlueBadgeRunTracker.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (model.ID != id)
+            if (model.ShoeID != id)
             {
                 ModelState.AddModelError("", "ID Mismatch");
                 return View(model);

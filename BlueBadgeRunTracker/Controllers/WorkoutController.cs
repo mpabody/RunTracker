@@ -74,7 +74,7 @@ namespace BlueBadgeRunTracker.Controllers
             var model =
                 new WorkoutEdit
                 {
-                    ID = detail.ID,
+                    WorkoutID = detail.WorkoutID,
                     Date = detail.Date,
                     Distance = detail.Distance,
                     CompletionTime = detail.CompletionTime,
@@ -97,7 +97,7 @@ namespace BlueBadgeRunTracker.Controllers
 
             if (!ModelState.IsValid) return View(model);
 
-            if (model.ID != id)
+            if (model.WorkoutID != id)
             {
                 ModelState.AddModelError("", "ID Mismatch");
                 return View(model);

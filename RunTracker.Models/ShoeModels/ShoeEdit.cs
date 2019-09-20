@@ -8,7 +8,7 @@ namespace RunTracker.Models
 {
     public class ShoeEdit
     {
-        public int ID { get; set; }
+        public int ShoeID { get; set; }
         public string Brand { get; set; }
         public string Name { get; set; }
     }

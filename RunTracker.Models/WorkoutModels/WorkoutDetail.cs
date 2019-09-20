@@ -11,7 +11,7 @@ namespace RunTracker.Models
 {
     public class WorkoutDetail
     {
-        public int ID { get; set; }
+        public int WorkoutID { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }

@@ -45,7 +45,7 @@ namespace RunTracker.Services
                         s =>
                             new ShoeListItem
                             {
-                                ID = s.ShoeID,
+                                ShoeID = s.ShoeID,
                                 Name = s.Name,
                                 Workouts = _db.Workouts.Where(w => w.ShoeID == s.ShoeID).ToList()
                             }
@@ -66,7 +66,7 @@ namespace RunTracker.Services
                 return
                     new ShoeDetail
                     {
-                        ID = entity.ShoeID,
+                        ShoeID = entity.ShoeID,
                         Brand = entity.Brand,
                         Name = entity.Name,
                         Workouts = _db.Workouts.Where(w => w.ShoeID == entity.ShoeID).ToList()
@@ -81,7 +81,7 @@ namespace RunTracker.Services
                 var entity =
                     _db
                         .Shoes
-                        .Single(s => s.ShoeID == model.ID && s.UserID == _userID);
+                        .Single(s => s.ShoeID == model.ShoeID && s.UserID == _userID);
 
                 entity.Brand = model.Brand;
                 entity.Name = model.Name;

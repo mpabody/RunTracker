@@ -10,7 +10,7 @@ namespace RunTracker.Models
 {
     public class ShoeDetail
     {
-        public int ID { get; set; }
+        public int ShoeID { get; set; }
         public string Brand { get; set; }
         public string Name { get; set; }
         public virtual ICollection<Workout> Workouts { get; set; }

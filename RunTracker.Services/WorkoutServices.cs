@@ -48,7 +48,7 @@ namespace RunTracker.Services
                         w =>
                             new WorkoutListItem
                             {
-                                ID = w.ID,
+                                RaceID = w.ID,
                                 Date = w.Date,
                                 Distance = w.Distance,
                                 ShoeID = w.ShoeID,
@@ -70,7 +70,7 @@ namespace RunTracker.Services
                 return
                     new WorkoutDetail
                     {
-                        ID = entity.ID,
+                        WorkoutID = entity.ID,
                         Date = entity.Date,
                         Distance = entity.Distance,
                         CompletionTime = entity.CompletionTime,
@@ -88,7 +88,7 @@ namespace RunTracker.Services
                 var entity =
                     _db
                         .Workouts
-                        .Single(w => w.ID == model.ID && w.UserID == _userID);
+                        .Single(w => w.ID == model.WorkoutID && w.UserID == _userID);
 
                 entity.Date = model.Date;
                 entity.Distance = model.Distance;
