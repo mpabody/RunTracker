@@ -36,5 +36,7 @@ namespace RunTracker.Data
         public string Comments { get; set; }
 
         public string CompletionTime { get; set; }
+
+        public Guid UserID { get; set; }
     }
 }

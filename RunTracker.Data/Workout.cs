@@ -11,7 +11,7 @@ namespace RunTracker.Data
     public class Workout
     {
         [Key]
-        public int ID { get; set; }
+        public int WorkoutID { get; set; }
 
         [ForeignKey("Shoe")]
         public int ShoeID { get; set; }

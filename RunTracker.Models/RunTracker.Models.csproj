@@ -55,7 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RaceModels\RaceCreate.cs" />
+    <Compile Include="RaceModels\RaceInterestedCreate.cs" />
+    <Compile Include="RaceModels\RaceInterestedDetail.cs" />
+    <Compile Include="RaceModels\RaceInterestedEdit.cs" />
     <Compile Include="RaceModels\RaceInterestedListItem.cs" />
     <Compile Include="ShoeModels\ShoeCreate.cs" />
     <Compile Include="ShoeModels\ShoeDetail.cs" />

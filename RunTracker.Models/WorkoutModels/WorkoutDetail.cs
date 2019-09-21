@@ -13,6 +13,7 @@ namespace RunTracker.Models
     {
         public int WorkoutID { get; set; }
 
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
@@ -22,6 +23,7 @@ namespace RunTracker.Models
         public int ShoeID { get; set; }
         public virtual Shoe Shoe { get; set; }
 
+        [Display(Name ="Completion Time")]
         public string CompletionTime { get; set; }
         public string Comments { get; set; }
     }

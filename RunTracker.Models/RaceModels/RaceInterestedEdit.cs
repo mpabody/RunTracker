@@ -7,20 +7,22 @@ using System.Threading.Tasks;
 
 namespace RunTracker.Models.RaceModels
 {
-    public class RaceInterestedListItem
+    public class RaceInterestedEdit
     {
-        public int RaceID { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime Date { get; set; }
 
         [Display(Name = "Race Name")]
         public string Name { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime Date { get; set; }
-
         public string Location { get; set; }
 
-        [Display(Name = "Distance (Miles)")]
         public double Distance { get; set; }
+
+        public string Description { get; set; }
+
+        public string Comments { get; set; }
+
     }
 }
