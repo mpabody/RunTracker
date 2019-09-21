@@ -18,7 +18,7 @@ namespace RunTracker.Services
             _userID = userID;
         }
 
-        public bool CreateWorkout(RaceInterestedCreate model)
+        public bool CreateRaceInterested(RaceInterestedCreate model)
         {
             var entity =
                 new Race()

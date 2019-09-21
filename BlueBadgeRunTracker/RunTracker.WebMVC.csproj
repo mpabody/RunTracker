@@ -247,10 +247,14 @@
     <Content Include="Views\Workout\Details.cshtml" />
     <Content Include="Views\Workout\Delete.cshtml" />
     <Content Include="Views\Workout\Edit.cshtml" />
+    <Content Include="Views\Race\Index.cshtml" />
+    <Content Include="Views\Race\Create.cshtml" />
+    <Content Include="Views\Race\Details.cshtml" />
+    <Content Include="Views\Race\Edit.cshtml" />
+    <Content Include="Views\Race\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Race\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace BlueBadgeRunTracker.Controllers
 {
+    [Authorize]
     public class WorkoutController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
