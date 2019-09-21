@@ -9,6 +9,9 @@ namespace RunTracker.Models.RaceModels
 {
     public class RaceInterestedEdit
     {
+
+        public int RaceID { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
