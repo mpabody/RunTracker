@@ -14,8 +14,3 @@ C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Data\obj\D
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Data\obj\Debug\RunTracker.Data.csproj.CopyComplete
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Data\obj\Debug\RunTracker.Data.dll
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Data\obj\Debug\RunTracker.Data.pdb
-C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Data\obj\Debug\RunTracker.Data.Migrations.InitialCreate.resources
-C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Data\obj\Debug\RunTracker.Data.csproj.GenerateResource.cache
-C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Data\obj\Debug\RunTracker.Data.Migrations.AddedProperties.resources
-C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Data\obj\Debug\RunTracker.Data.Migrations.NewMigration.resources
-C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\RunTracker.Data\obj\Debug\RunTracker.Data.Migrations.RaceTable.resources
