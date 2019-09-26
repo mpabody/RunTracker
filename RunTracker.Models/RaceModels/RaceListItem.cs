@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RunTracker.Models.RaceModels
 {
-    public class RaceInterestedListItem
+    public class RaceListItem
     {
         public int RaceID { get; set; }
 
@@ -15,7 +15,7 @@ namespace RunTracker.Models.RaceModels
         public string Name { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime Date { get; set; }
 
         public string Location { get; set; }

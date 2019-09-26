@@ -26,6 +26,9 @@
     <div class="col-md-4">
         <h2>Races</h2>
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p>@Html.ActionLink("View Races", "Index", "Race", null, new { @class = "btn btn-primary btn-large" })</p>
+        <p>
+            @Html.ActionLink("View Races I'm Interested In", "IndexInterested", "Race", null, new { @class = "btn btn-primary btn-large" })<br />
+                @Html.ActionLink("View Races I've Run", "IndexRan", "Race", null, new { @class = "btn btn-primary btn-large" })
+            </p>
     </div>
 </div>

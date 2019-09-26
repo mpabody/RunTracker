@@ -16,7 +16,8 @@ namespace BlueBadgeRunTracker.Controllers
         private ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: Race
-        public ActionResult Index()
+        [ActionName("IndexInterested")]
+        public ActionResult IndexInterested()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new RaceService(userID);
@@ -26,7 +27,8 @@ namespace BlueBadgeRunTracker.Controllers
         }
 
         // GET : Create
-        public ActionResult Create()
+        [ActionName("CreateInterested")]
+        public ActionResult CreateInterested()
         {
             return View();
         }
@@ -43,25 +45,28 @@ namespace BlueBadgeRunTracker.Controllers
             if (service.CreateRaceInterested(model))
             {
                 TempData["SaveResult"] = "Your race was created.";
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexInterested");
             };
 
             return View(model);
         }
 
-        public ActionResult Details(int id)
+        // GET : Details Interested
+        [ActionName("DetailsInterested")]
+        public ActionResult DetailsInterested(int id)
         {
             var svc = CreateRaceService();
-            var model = svc.GetRaceByID(id);
+            var model = svc.GetRaceInterestedByID(id);
 
             return View(model);
         }
 
-        // GET : Edit
-        public ActionResult Edit(int id)
+        // GET : Edit Interested
+        [ActionName("EditInterested")]
+        public ActionResult EditInterested(int id)
         {
             var service = CreateRaceService();
-            var detail = service.GetRaceByID(id);
+            var detail = service.GetRaceInterestedByID(id);
             var model =
                 new RaceInterestedEdit
                 {
@@ -77,10 +82,10 @@ namespace BlueBadgeRunTracker.Controllers
             return View(model);
         }
 
-        // POST : Edit
+        // POST : Edit Interested
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, RaceInterestedEdit model)
+        public ActionResult EditInterested(int id, RaceInterestedEdit model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -95,25 +100,26 @@ namespace BlueBadgeRunTracker.Controllers
             if (service.UpdateRaceInterested(model))
             {
                 TempData["SaveResult"] = "Your race was updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexInterested");
             }
 
             ModelState.AddModelError("", "Your race could not be updated.");
             return View(model);
         }
 
-        [ActionName("Delete")]
+        // GET : Delete Interested
+        [ActionName("DeleteInterested")]
         public ActionResult Delete(int id)
         {
             var svc = CreateRaceService();
-            var model = svc.GetRaceByID(id);
+            var model = svc.GetRaceInterestedByID(id);
 
             return View(model);
         }
 
-        // POST : Delete
+        // POST : Delete Interested
         [HttpPost]
-        [ActionName("Delete")]
+        [ActionName("DeleteInterested")]
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
@@ -123,8 +129,107 @@ namespace BlueBadgeRunTracker.Controllers
 
             TempData["SaveResult"] = "Your shoe was deleted.";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexInterested");
         }
+
+
+        // Interested
+        //-----------------------------------------------------------
+        // Ran
+
+
+        // GET: Race
+        [ActionName("IndexRan")]
+        public ActionResult IndexRan()
+        {
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var service = new RaceService(userID);
+            var model = service.GetRacesRan();
+
+            return View(model);
+        }
+
+        // GET : Edit Ran
+        [ActionName("EditRan")]
+        public ActionResult EditRan(int id)
+        {
+            var service = CreateRaceService();
+            var detail = service.GetRaceRanByID(id);
+            var model =
+                new RaceRanEdit
+                {
+                    RaceID = detail.RaceID,
+                    Date = detail.Date,
+                    Name = detail.Name,
+                    Location = detail.Location,
+                    Distance = detail.Distance,
+                    Description = detail.Description,
+                    Comments = detail.Comments,
+                    CompletionTime = detail.CompletionTime,
+                    ShoeID = detail.ShoeID
+                };
+            return View(model);
+        }
+
+        // POST : Edit Ran
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditRan(int id, RaceRanEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.RaceID != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            }
+
+            var service = CreateRaceService();
+
+            if (service.UpdateRaceRan(model))
+            {
+                TempData["SaveResult"] = "Your race was updated.";
+                return RedirectToAction("IndexRan");
+            }
+
+            ModelState.AddModelError("", "Your race could not be updated.");
+            return View(model);
+        }
+
+        // GET : Details Ran
+        public ActionResult DetailsRan(int id)
+        {
+            var svc = CreateRaceService();
+            var model = svc.GetRaceRanByID(id);
+
+            return View(model);
+        }
+
+        // GET : Delete Ran
+        [ActionName("DeleteRan")]
+        public ActionResult DeleteRan(int id)
+        {
+            var svc = CreateRaceService();
+            var model = svc.GetRaceRanByID(id);
+
+            return View(model);
+        }
+
+        // POST : Delete Ran
+        [HttpPost]
+        [ActionName("DeleteRan")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePostRan(int id)
+        {
+            var service = CreateRaceService();
+
+            service.DeleteRace(id);
+
+            TempData["SaveResult"] = "Your shoe was deleted.";
+
+            return RedirectToAction("IndexRan");
+        }
+
 
         private RaceService CreateRaceService()
         {

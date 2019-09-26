@@ -18,6 +18,7 @@ namespace RunTracker.Services
             _userID = userID;
         }
 
+        // Created a race -- currently must start as interested before moving to Ran
         public bool CreateRaceInterested(RaceInterestedCreate model)
         {
             var entity =
@@ -38,7 +39,8 @@ namespace RunTracker.Services
             }
         }
 
-        public IEnumerable<RaceInterestedListItem> GetRacesInterested()
+        // Display all race list items I'm interested in
+        public IEnumerable<RaceListItem> GetRacesInterested()
         {
             using (var _db = new ApplicationDbContext())
             {
@@ -46,7 +48,7 @@ namespace RunTracker.Services
                     .Where(r => r.UserID == _userID)
                     .Select(
                         r =>
-                            new RaceInterestedListItem
+                            new RaceListItem
                             {
                                 RaceID = r.RaceID,
                                 Name = r.Name,
@@ -59,14 +61,15 @@ namespace RunTracker.Services
             }
         }
 
-        public RaceInterestedDetail GetRaceByID(int id)
+        // Display all properties for a race I'm interested in
+        public RaceInterestedDetail GetRaceInterestedByID(int id)
         {
             using (var _db = new ApplicationDbContext())
             {
                 var entity =
                     _db
                     .Races
-                    .Single(r => r.RaceID == id && r.UserID == _userID);
+                    .Single(r => r.RaceID == id && r.UserID == _userID && r.CompletionTime == null);
                 return
                     new RaceInterestedDetail
                     {
@@ -81,6 +84,7 @@ namespace RunTracker.Services
             }
         }
 
+        // Update a race I'm interested in -- no option to say I ran it
         public bool UpdateRaceInterested(RaceInterestedEdit model)
         {
             using (var _db = new ApplicationDbContext())
@@ -88,7 +92,7 @@ namespace RunTracker.Services
                 var entity =
                     _db
                     .Races
-                    .Single(r => r.RaceID == model.RaceID && r.UserID == _userID);
+                    .Single(r => r.RaceID == model.RaceID && r.UserID == _userID && r.CompletionTime == null);
 
                 entity.Date = model.Date;
                 entity.Name = model.Name;
@@ -101,6 +105,77 @@ namespace RunTracker.Services
             }
         }
 
+        // Displays list items for Races I've run -- completion time not equal to null
+        public IEnumerable<RaceListItem> GetRacesRan()
+        {
+            using (var _db = new ApplicationDbContext())
+            {
+                var query = _db.Races
+                    .Where(r => r.UserID == _userID && r.CompletionTime != null)
+                    .Select(
+                        r =>
+                            new RaceListItem
+                            {
+                                RaceID = r.RaceID,
+                                Name = r.Name,
+                                Date = r.Date,
+                                Location = r.Location,
+                                Distance = r.Distance
+                            }
+                    );
+                return query.ToList();
+            }
+        }
+        
+        // Display all properties for a race I've run
+        public RaceRanDetail GetRaceRanByID(int id)
+        {
+            using (var _db = new ApplicationDbContext())
+            {
+                var entity =
+                    _db
+                    .Races
+                    .Single(r => r.RaceID == id && r.UserID == _userID && r.CompletionTime != null);
+                return
+                    new RaceRanDetail
+                    {
+                        RaceID = entity.RaceID,
+                        Date = entity.Date,
+                        Name = entity.Name,
+                        Location = entity.Location,
+                        Distance = entity.Distance,
+                        Description = entity.Description,
+                        Comments = entity.Comments,
+                        CompletionTime = entity.CompletionTime,
+                        ShoeID = entity.ShoeID
+                    };
+            }
+        }
+
+        // Update a race I've run
+        public bool UpdateRaceRan(RaceRanEdit model)
+        {
+            using (var _db = new ApplicationDbContext())
+            {
+                var entity =
+                    _db
+                    .Races
+                    .Single(r => r.RaceID == model.RaceID && r.UserID == _userID && r.CompletionTime != null);
+
+                entity.Date = model.Date;
+                entity.Name = model.Name;
+                entity.Location = model.Location;
+                entity.Distance = model.Distance;
+                entity.Description = model.Description;
+                entity.Comments = model.Comments;
+                entity.CompletionTime = model.CompletionTime;
+                entity.ShoeID = model.ShoeID;
+
+                return _db.SaveChanges() == 1;
+            }
+        }
+
+        // Delete Race
         public bool DeleteRace(int id)
         {
             using (var _db = new ApplicationDbContext())
@@ -114,7 +189,5 @@ namespace RunTracker.Services
                 return _db.SaveChanges() == 1;
             }
         }
-
-
     }
 }

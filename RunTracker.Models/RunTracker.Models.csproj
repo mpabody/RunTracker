@@ -58,7 +58,9 @@
     <Compile Include="RaceModels\RaceInterestedCreate.cs" />
     <Compile Include="RaceModels\RaceInterestedDetail.cs" />
     <Compile Include="RaceModels\RaceInterestedEdit.cs" />
-    <Compile Include="RaceModels\RaceInterestedListItem.cs" />
+    <Compile Include="RaceModels\RaceListItem.cs" />
+    <Compile Include="RaceModels\RaceRanDetail.cs" />
+    <Compile Include="RaceModels\RaceRanEdit.cs" />
     <Compile Include="ShoeModels\ShoeCreate.cs" />
     <Compile Include="ShoeModels\ShoeDetail.cs" />
     <Compile Include="ShoeModels\ShoeEdit.cs" />

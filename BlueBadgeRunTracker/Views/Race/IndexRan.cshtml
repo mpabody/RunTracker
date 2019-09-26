@@ -1,16 +1,19 @@
-﻿@model IEnumerable<RunTracker.Models.RaceModels.RaceInterestedListItem>
+﻿@model IEnumerable<RunTracker.Models.RaceModels.RaceListItem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IndexRan";
 }
 
-<h2>Index</h2>
+<h2>IndexRan</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreateInterested")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RaceID)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -29,6 +32,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.HiddenFor(modelItem => item.RaceID)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
@@ -41,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.Distance)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RaceID}) |
-            @Html.ActionLink("Details", "Details", new { id=item.RaceID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RaceID })
+            @Html.ActionLink("Edit", "EditRan", new { id=item.RaceID }) |
+            @Html.ActionLink("Details", "DetailsRan", new { id=item.RaceID }) |
+            @Html.ActionLink("Delete", "DeleteRan", new { id=item.RaceID })
         </td>
     </tr>
 }

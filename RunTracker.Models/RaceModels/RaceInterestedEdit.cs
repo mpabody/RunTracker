@@ -13,7 +13,7 @@ namespace RunTracker.Models.RaceModels
         public int RaceID { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime Date { get; set; }
 
         [Display(Name = "Race Name")]
@@ -21,6 +21,7 @@ namespace RunTracker.Models.RaceModels
 
         public string Location { get; set; }
 
+        [Display(Name = "Distance (Miles)")]
         public double Distance { get; set; }
 
         public string Description { get; set; }

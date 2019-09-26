@@ -12,7 +12,7 @@ namespace RunTracker.Models.RaceModels
     public class RaceInterestedCreate
     {
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime Date { get; set; }
 
         [Required]
@@ -22,7 +22,7 @@ namespace RunTracker.Models.RaceModels
         public string Location { get; set; }
 
         [Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name ="Distance (Miles)")]
         public double Distance { get; set; }
 
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]

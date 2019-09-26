@@ -1,10 +1,10 @@
 ﻿@model RunTracker.Models.RaceModels.RaceInterestedEdit
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "EditInterested";
 }
 
-<h2>Edit</h2>
+<h2>EditInterested</h2>
 
 
 @using (Html.BeginForm())
@@ -16,9 +16,9 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.RaceID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.HiddenFor(model => model.RaceID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RaceID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.RaceID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RaceID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -80,7 +80,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "IndexInterested")
 </div>
 
 @section Scripts {
