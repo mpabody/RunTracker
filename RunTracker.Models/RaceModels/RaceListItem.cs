@@ -15,7 +15,7 @@ namespace RunTracker.Models.RaceModels
         public string Name { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Date { get; set; }
 
         public string Location { get; set; }

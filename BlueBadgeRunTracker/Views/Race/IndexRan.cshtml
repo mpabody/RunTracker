@@ -7,13 +7,10 @@
 <h2>IndexRan</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateInterested")
+    @Html.ActionLink("Create New", "CreateRan")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RaceID)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -31,9 +28,9 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        
             @Html.HiddenFor(modelItem => item.RaceID)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>

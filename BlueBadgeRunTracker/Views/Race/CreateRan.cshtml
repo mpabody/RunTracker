@@ -1,28 +1,20 @@
-﻿@model RunTracker.Models.RaceModels.RaceRanEdit
+﻿@model RunTracker.Models.RaceModels.RaceRanCreate
 
 @{
-    ViewBag.Title = "EditRan";
+    ViewBag.Title = "CreateRan";
 }
 
-<h2>EditRan</h2>
+<h2>CreateRan</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>RaceRanEdit</h4>
+        <h4>RaceRanCreate</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.RaceID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RaceID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RaceID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -80,16 +72,16 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ShoeID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ShoeID, "Shoe", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ShoeID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("ShoeID", null, "--SELECT--", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ShoeID, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>

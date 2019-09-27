@@ -256,6 +256,7 @@
     <Content Include="Views\Race\DeleteRan.cshtml" />
     <Content Include="Views\Race\EditInterested.cshtml" />
     <Content Include="Views\Race\IndexRan.cshtml" />
+    <Content Include="Views\Race\CreateRan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

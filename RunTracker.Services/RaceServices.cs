@@ -18,28 +18,7 @@ namespace RunTracker.Services
             _userID = userID;
         }
 
-        // Created a race -- currently must start as interested before moving to Ran
-        public bool CreateRaceInterested(RaceInterestedCreate model)
-        {
-            var entity =
-                new Race()
-                {
-                    UserID = _userID,
-                    Date = model.Date,
-                    Name = model.Name,
-                    Location = model.Location,
-                    Distance = model.Distance,
-                    Description = model.Description,
-                    Comments = model.Comments
-                };
-            using (var _db = new ApplicationDbContext())
-            {
-                _db.Races.Add(entity);
-                return _db.SaveChanges() == 1;
-            }
-        }
-
-        // Display all race list items I'm interested in
+        // Display list of Races I'm interested in
         public IEnumerable<RaceListItem> GetRacesInterested()
         {
             using (var _db = new ApplicationDbContext())
@@ -61,7 +40,7 @@ namespace RunTracker.Services
             }
         }
 
-        // Display all properties for a race I'm interested in
+        // Display details for a race I'm interested in
         public RaceInterestedDetail GetRaceInterestedByID(int id)
         {
             using (var _db = new ApplicationDbContext())
@@ -81,6 +60,27 @@ namespace RunTracker.Services
                         Description = entity.Description,
                         Comments = entity.Comments
                     };
+            }
+        }
+
+        // Created a race I'm interested in
+        public bool CreateRaceInterested(RaceInterestedCreate model)
+        {
+            var entity =
+                new Race()
+                {
+                    UserID = _userID,
+                    Date = model.Date,
+                    Name = model.Name,
+                    Location = model.Location,
+                    Distance = model.Distance,
+                    Description = model.Description,
+                    Comments = model.Comments
+                };
+            using (var _db = new ApplicationDbContext())
+            {
+                _db.Races.Add(entity);
+                return _db.SaveChanges() == 1;
             }
         }
 
@@ -105,7 +105,13 @@ namespace RunTracker.Services
             }
         }
 
-        // Displays list items for Races I've run -- completion time not equal to null
+
+            // Interested
+        //---------------------------------------------------------------------
+            // Ran
+
+
+        // Displays list of Races I've run -- completion time NOT equal to null
         public IEnumerable<RaceListItem> GetRacesRan()
         {
             using (var _db = new ApplicationDbContext())
@@ -152,6 +158,29 @@ namespace RunTracker.Services
             }
         }
 
+        // Create a race I've run
+        public bool CreateRaceRan(RaceRanCreate model)
+        {
+            var entity =
+                new Race()
+                {
+                    UserID = _userID,
+                    Date = model.Date,
+                    Name = model.Name,
+                    Location = model.Location,
+                    Distance = model.Distance,
+                    Description = model.Description,
+                    Comments = model.Comments,
+                    CompletionTime = model.CompletionTime,
+                    ShoeID = model.ShoeID
+                };
+            using (var _db = new ApplicationDbContext())
+            {
+                _db.Races.Add(entity);
+                return _db.SaveChanges() == 1;
+            }
+        }
+
         // Update a race I've run
         public bool UpdateRaceRan(RaceRanEdit model)
         {
@@ -175,7 +204,7 @@ namespace RunTracker.Services
             }
         }
 
-        // Delete Race
+        // Delete Any Race
         public bool DeleteRace(int id)
         {
             using (var _db = new ApplicationDbContext())

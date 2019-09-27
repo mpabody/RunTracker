@@ -36,7 +36,7 @@ namespace BlueBadgeRunTracker.Controllers
         // POST : Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RaceInterestedCreate model)
+        public ActionResult CreateInterested(RaceInterestedCreate model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -109,7 +109,7 @@ namespace BlueBadgeRunTracker.Controllers
 
         // GET : Delete Interested
         [ActionName("DeleteInterested")]
-        public ActionResult Delete(int id)
+        public ActionResult DeleteInterested(int id)
         {
             var svc = CreateRaceService();
             var model = svc.GetRaceInterestedByID(id);
@@ -121,7 +121,7 @@ namespace BlueBadgeRunTracker.Controllers
         [HttpPost]
         [ActionName("DeleteInterested")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
+        public ActionResult DeletePostInterested(int id)
         {
             var service = CreateRaceService();
 
@@ -133,9 +133,9 @@ namespace BlueBadgeRunTracker.Controllers
         }
 
 
-        // Interested
+            // Interested
         //-----------------------------------------------------------
-        // Ran
+            // Ran
 
 
         // GET: Race
@@ -145,6 +145,39 @@ namespace BlueBadgeRunTracker.Controllers
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new RaceService(userID);
             var model = service.GetRacesRan();
+
+            return View(model);
+        }
+
+
+        // GET : Create Ran
+        [ActionName("CreateRan")]
+        public ActionResult CreateRan()
+        {
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
+            return View();
+        }
+
+        // POST : Create Ran
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateRan(RaceRanCreate model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
+                return View(model);
+            }
+
+            var service = CreateRaceService();
+
+            if (service.CreateRaceRan(model))
+            {
+                TempData["SaveResult"] = "Your race was created.";
+                return RedirectToAction("IndexRan");
+            };
+
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
 
             return View(model);
         }
@@ -168,6 +201,9 @@ namespace BlueBadgeRunTracker.Controllers
                     CompletionTime = detail.CompletionTime,
                     ShoeID = detail.ShoeID
                 };
+
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
+
             return View(model);
         }
 
@@ -176,7 +212,12 @@ namespace BlueBadgeRunTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditRan(int id, RaceRanEdit model)
         {
-            if (!ModelState.IsValid) return View(model);
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
             if (model.RaceID != id)
             {
@@ -202,6 +243,7 @@ namespace BlueBadgeRunTracker.Controllers
             var svc = CreateRaceService();
             var model = svc.GetRaceRanByID(id);
 
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
             return View(model);
         }
 
@@ -229,7 +271,6 @@ namespace BlueBadgeRunTracker.Controllers
 
             return RedirectToAction("IndexRan");
         }
-
 
         private RaceService CreateRaceService()
         {
