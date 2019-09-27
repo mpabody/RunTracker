@@ -47,7 +47,8 @@ namespace RunTracker.Services
                             {
                                 ShoeID = s.ShoeID,
                                 Name = s.Name,
-                                Workouts = _db.Workouts.Where(w => w.ShoeID == s.ShoeID).ToList()
+                                Workouts = _db.Workouts.Where(w => w.ShoeID == s.ShoeID).ToList(),
+                                Races = _db.Races.Where(r => r.ShoeID == s.ShoeID).ToList()
                             }
                         );
                 return query.ToList();
@@ -69,7 +70,8 @@ namespace RunTracker.Services
                         ShoeID = entity.ShoeID,
                         Brand = entity.Brand,
                         Name = entity.Name,
-                        Workouts = _db.Workouts.Where(w => w.ShoeID == entity.ShoeID).ToList()
+                        Workouts = _db.Workouts.Where(w => w.ShoeID == entity.ShoeID).ToList(),
+                        Races = _db.Races.Where(r => r.ShoeID == entity.ShoeID).ToList()
                     };
             }
         }

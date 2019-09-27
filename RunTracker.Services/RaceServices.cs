@@ -133,7 +133,7 @@ namespace RunTracker.Services
             }
         }
         
-        // Display all properties for a race I've run
+        // Display details for a race I've run
         public RaceRanDetail GetRaceRanByID(int id)
         {
             using (var _db = new ApplicationDbContext())
@@ -153,7 +153,8 @@ namespace RunTracker.Services
                         Description = entity.Description,
                         Comments = entity.Comments,
                         CompletionTime = entity.CompletionTime,
-                        ShoeID = entity.ShoeID
+                        ShoeID = entity.ShoeID,
+                        Shoe = entity.Shoe
                     };
             }
         }
