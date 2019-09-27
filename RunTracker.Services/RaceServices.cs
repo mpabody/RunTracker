@@ -24,7 +24,7 @@ namespace RunTracker.Services
             using (var _db = new ApplicationDbContext())
             {
                 var query = _db.Races
-                    .Where(r => r.UserID == _userID)
+                    .Where(r => r.UserID == _userID && r.CompletionTime == null)
                     .Select(
                         r =>
                             new RaceListItem

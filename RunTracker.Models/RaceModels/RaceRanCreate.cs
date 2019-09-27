@@ -11,11 +11,13 @@ namespace RunTracker.Models.RaceModels
 {
     public class RaceRanCreate
     {
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Date { get; set; }
 
         [Required]
+        [Display(Name = "Race Name")]
         public string Name { get; set; }
 
         [Required]

@@ -13,6 +13,7 @@ namespace RunTracker.Models.RaceModels
     {
         public int RaceID { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
@@ -29,6 +30,7 @@ namespace RunTracker.Models.RaceModels
 
         public string Comments { get; set; }
 
+        [Required]
         [Display(Name ="Completion Time")]
         public string CompletionTime { get; set; }
 

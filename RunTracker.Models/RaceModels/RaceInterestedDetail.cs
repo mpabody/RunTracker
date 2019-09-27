@@ -20,7 +20,7 @@ namespace RunTracker.Models.RaceModels
 
         public string Location { get; set; }
 
-        [Display(Name = "Distance (Miles")]
+        [Display(Name = "Distance (Miles)")]
         public double Distance { get; set; }
 
         public string Description { get; set; }

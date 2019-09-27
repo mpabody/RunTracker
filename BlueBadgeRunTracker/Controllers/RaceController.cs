@@ -165,7 +165,7 @@ namespace BlueBadgeRunTracker.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
+                ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name", model.ShoeID);
                 return View(model);
             }
 
@@ -177,7 +177,7 @@ namespace BlueBadgeRunTracker.Controllers
                 return RedirectToAction("IndexRan");
             };
 
-            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name", model.ShoeID);
 
             return View(model);
         }
@@ -199,10 +199,11 @@ namespace BlueBadgeRunTracker.Controllers
                     Description = detail.Description,
                     Comments = detail.Comments,
                     CompletionTime = detail.CompletionTime,
-                    ShoeID = detail.ShoeID
+                    ShoeID = detail.ShoeID,
+                    Shoe = detail.Shoe
                 };
 
-            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name", model.ShoeID);
 
             return View(model);
         }
@@ -212,7 +213,7 @@ namespace BlueBadgeRunTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditRan(int id, RaceRanEdit model)
         {
-            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name", model.ShoeID);
 
             if (!ModelState.IsValid)
             {
@@ -243,7 +244,7 @@ namespace BlueBadgeRunTracker.Controllers
             var svc = CreateRaceService();
             var model = svc.GetRaceRanByID(id);
 
-            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name");
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name", model.ShoeID);
             return View(model);
         }
 

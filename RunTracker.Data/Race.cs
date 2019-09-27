@@ -17,6 +17,7 @@ namespace RunTracker.Data
         public int? ShoeID { get; set; }
         public virtual Shoe Shoe { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
@@ -29,6 +30,7 @@ namespace RunTracker.Data
         public string Location { get; set; }
 
         [Required]
+        [Display(Name ="Distance (Miles)")]
         public double Distance { get; set; }
 
         public string Description { get; set; }
