@@ -4,31 +4,36 @@
 
 <div class="jumbotron">
     <h1>Run Tracker</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <p class="lead">Keep track of all your workouts and races. Track the mileage of your shoes so that you can start to plan ahead for when you need to replace them. Start to notice which shoes get a lot of mileage and which ones need to be replaced earlier.</p>
+    @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
 </div>
 
+    
+
 <div class="row">
+
+    <div class="col-md-10">
+        <img class="center-block" src="~/assets/RoadRace.jpg">
+    </div>
+
     <div class="col-md-4">
         <h2>Workouts</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Log your workouts here. Fill out the date, completion time and which shoe you ran in along with any comments on how you felt, the weather etc.
         </p>
-        <p>@Html.ActionLink("View All Workouts", "Index", "Workout", null, new { @class = "btn btn-primary btn-large" })</p>
+        <p>@Html.ActionLink("My Workouts", "Index", "Workout", null, new { @class = "btn btn-primary btn-large" })</p>
     </div>
     <div class="col-md-4">
         <h2>Shoes</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p>@Html.ActionLink("View All Shoes", "Index", "Shoe", null, new { @class = "btn btn-primary btn-large" })</p>
+        <p>Add a new shoe to your collection. Each time you log a workout or race you've run, the mileage will be tracked on the shoe. View the total miles for each shoe here.</p>
+        <p>@Html.ActionLink("My Shoes", "Index", "Shoe", null, new { @class = "btn btn-primary btn-large" })</p>
     </div>
     <div class="col-md-4">
         <h2>Races</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p>Create a new race that you're training for or just considering running. Add the race's details so you have all the information you'd want when considering your race. Once you've run it, add a completion time and the shoe you wore so those miles get tracked on the shoe. </p>
         <p>
-            @Html.ActionLink("View Races I'm Interested In", "IndexInterested", "Race", null, new { @class = "btn btn-primary btn-large" })<br />
-                @Html.ActionLink("View Races I've Run", "IndexRan", "Race", null, new { @class = "btn btn-primary btn-large" })
-            </p>
+            @Html.ActionLink("Races I'm Interested In", "IndexInterested", "Race", null, new { @class = "btn btn-primary btn-large" })
+            @Html.ActionLink("Races I've Run", "IndexRan", "Race", null, new { @class = "btn btn-primary btn-large" })
+        </p>
     </div>
 </div>

@@ -4,7 +4,7 @@
     ViewBag.Title = "CreateInterested";
 }
 
-<h2>Create</h2>
+<h2>Add a Race</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>RaceInterestedCreate</h4>
+        <h4>Add a new race you're interested in running.</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -65,7 +65,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Add" class="btn btn-default" />
             </div>
         </div>
     </div>
