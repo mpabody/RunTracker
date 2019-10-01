@@ -8,32 +8,36 @@
     @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
 </div>
 
-    
+
 
 <div class="row">
 
-    <div class="col-md-10">
-        <img class="center-block" src="~/assets/RoadRace.jpg">
-    </div>
-
     <div class="col-md-4">
-        <h2>Workouts</h2>
-        <p>
-            Log your workouts here. Fill out the date, completion time and which shoe you ran in along with any comments on how you felt, the weather etc.
+        <div class="sectionDescription">
+            <h2>Workouts</h2>
+            <p>Log your workouts here. Fill out the date, completion time and which shoe you ran in along with any comments on how you felt, the weather etc.</p>
+        </div>
+        <p class="homeButtons">
+        @Html.ActionLink("My Workouts", "Index", "Workout", null, new { @class = "btn btn-primary btn-large" })
+        </pclass="homeButtons>
+    </div>
+    <div class="col-md-4">
+        <div class="sectionDescription">
+            <h2>Shoes</h2>
+            <p>Add your shoes here. Each time you log a workout or race you've run, the mileage will be tracked on the shoe. View the total miles for each shoe here.</p>
+        </div>
+        <p class="homeButtons">
+        @Html.ActionLink("My Shoes", "Index", "Shoe", null, new { @class = "btn btn-primary btn-large" })
         </p>
-        <p>@Html.ActionLink("My Workouts", "Index", "Workout", null, new { @class = "btn btn-primary btn-large" })</p>
     </div>
     <div class="col-md-4">
-        <h2>Shoes</h2>
-        <p>Add a new shoe to your collection. Each time you log a workout or race you've run, the mileage will be tracked on the shoe. View the total miles for each shoe here.</p>
-        <p>@Html.ActionLink("My Shoes", "Index", "Shoe", null, new { @class = "btn btn-primary btn-large" })</p>
-    </div>
-    <div class="col-md-4">
-        <h2>Races</h2>
-        <p>Create a new race that you're training for or just considering running. Add the race's details so you have all the information you'd want when considering your race. Once you've run it, add a completion time and the shoe you wore so those miles get tracked on the shoe. </p>
-        <p>
+        <div class="sectionDescription">
+            <h2>Races</h2>
+            <p>Add a race that you're training for or just considering. Once you've run it, add a completion time and the shoe you wore.</p>
+        </div>
+        <p class="homeButtons">
             @Html.ActionLink("Races I'm Interested In", "IndexInterested", "Race", null, new { @class = "btn btn-primary btn-large" })
-            @Html.ActionLink("Races I've Run", "IndexRan", "Race", null, new { @class = "btn btn-primary btn-large" })
-        </p>
-    </div>
+        @Html.ActionLink("Races I've Run", "IndexRan", "Race", null, new { @class = "btn btn-primary btn-large" })
+    </p>
+</div>
 </div>
