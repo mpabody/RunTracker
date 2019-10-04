@@ -21,6 +21,7 @@ namespace RunTracker.Models
         public double Distance { get; set; }
 
         [Required]
+        [Display(Name="Completion Time")]
         public string CompletionTime { get; set; }
 
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]

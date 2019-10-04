@@ -25,13 +25,14 @@ namespace BlueBadgeRunTracker.Controllers
         // GET : Create
         public ActionResult Create()
         {
+            ViewBag.returnUrl = Request.UrlReferrer;
             return View();
         }
 
         // POST : Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ShoeCreate model)
+        public ActionResult Create(ShoeCreate model, string returnUrl)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -40,7 +41,7 @@ namespace BlueBadgeRunTracker.Controllers
             if (service.CreateShoe(model))
             {
                 TempData["SaveResult"] = "Your shoe was created.";
-                return RedirectToAction("Index");
+                return Redirect(returnUrl);
             };
 
             return View(model);
