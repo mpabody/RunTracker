@@ -76,6 +76,7 @@
             <div class="col-md-10">
                 @Html.DropDownList("ShoeID", null, "--SELECT--", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ShoeID, "", new { @class = "text-danger" })
+                @Html.ActionLink("Add A New Shoe", "Create", "Shoe", null, new { @class = "btn btn-primary btn-small" })
             </div>
         </div>
 
