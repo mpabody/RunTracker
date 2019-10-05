@@ -106,9 +106,9 @@ namespace RunTracker.Services
         }
 
 
-            // Interested
+        // Interested
         //---------------------------------------------------------------------
-            // Ran
+        // Ran
 
 
         // Displays list of Races I've run -- completion time NOT equal to null
@@ -132,7 +132,7 @@ namespace RunTracker.Services
                 return query.ToList();
             }
         }
-        
+
         // Display details for a race I've run
         public RaceRanDetail GetRaceRanByID(int id)
         {
@@ -199,6 +199,57 @@ namespace RunTracker.Services
                 entity.Description = model.Description;
                 entity.Comments = model.Comments;
                 entity.CompletionTime = model.CompletionTime;
+                entity.ShoeID = model.ShoeID;
+
+                return _db.SaveChanges() == 1;
+            }
+        }
+
+
+        // ConvertToRan
+
+           // Get Race By ID to convert
+        public RaceRanDetail GetRaceToConvertByID(int id)
+        {
+            using (var _db = new ApplicationDbContext())
+            {
+                var entity =
+                    _db
+                    .Races
+                    .Single(r => r.RaceID == id && r.UserID == _userID);
+                return
+                    new RaceRanDetail
+                    {
+                        RaceID = entity.RaceID,
+                        Date = entity.Date,
+                        Name = entity.Name,
+                        Location = entity.Location,
+                        Distance = entity.Distance,
+                        Description = entity.Description,
+                        Comments = entity.Comments,
+                        CompletionTime = entity.CompletionTime,
+                        ShoeID = entity.ShoeID
+                    };
+            }
+        }
+
+        // Convert from Interested to Ran
+        public bool ConvertFromInterestedToRan(RaceRanEdit model)
+        {
+            using (var _db = new ApplicationDbContext())
+            {
+                var entity =
+                    _db
+                    .Races
+                    .Single(r => r.RaceID == model.RaceID && r.UserID == _userID);
+
+                entity.Date = model.Date;
+                entity.Name = model.Name;
+                entity.Location = model.Location;
+                entity.Distance = model.Distance;
+                entity.Description = model.Description;
+                entity.Comments = model.Comments;
+                entity.CompletionTime = "";
                 entity.ShoeID = model.ShoeID;
 
                 return _db.SaveChanges() == 1;

@@ -61,13 +61,14 @@ tr:nth-child(odd) {
     opacity: 0.85;
 }
 
-.manageView {
+.homeButtons{
+    text-align:center;
+}
+
+.form-horizontal, .dl-horizontal, .manageView {
     background: #D6992E;
     opacity: 0.85;
 }
 
-.homeButtons{
-    text-align:center;
-}
 
 /*#B3AFAF -- original color or home backgrounds and <tr>s*/

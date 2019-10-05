@@ -273,6 +273,66 @@ namespace BlueBadgeRunTracker.Controllers
             return RedirectToAction("IndexRan");
         }
 
+        //---------------------------------------
+
+        // Convert RaceInterested to RaceRan
+
+        // GET : Convert
+        [ActionName("ConvertToRan")]
+        public ActionResult ConvertToRan(int id)
+        {
+            var service = CreateRaceService();
+            var detail = service.GetRaceToConvertByID(id);
+            var model =
+                new RaceRanEdit
+                {
+                    RaceID = detail.RaceID,
+                    Date = detail.Date,
+                    Name = detail.Name,
+                    Location = detail.Location,
+                    Distance = detail.Distance,
+                    Description = detail.Description,
+                    Comments = detail.Comments,
+                    CompletionTime = detail.CompletionTime,
+                    ShoeID = detail.ShoeID,
+                    Shoe = detail.Shoe
+                };
+
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name", model.ShoeID);
+
+            return View(model);
+        }
+
+        //POST : ConvertToRan
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConvertToRan(int id, RaceRanEdit model)
+        {
+            ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name", model.ShoeID);
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (model.RaceID != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            }
+
+            var service = CreateRaceService();
+
+            if (service.ConvertFromInterestedToRan(model))
+            {
+                TempData["SaveResult"] = "Your race was updated.";
+                return RedirectToAction("IndexRan");
+            }
+
+            ModelState.AddModelError("", "Your race could not be updated.");
+            return View(model);
+        }
+
         private RaceService CreateRaceService()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
