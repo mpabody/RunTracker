@@ -21,7 +21,7 @@ namespace RunTracker.Models
         public double Distance { get; set; }
 
         [ForeignKey("Shoe")]
-        public int ShoeID { get; set; }
+        public int? ShoeID { get; set; }
         public virtual Shoe Shoe { get; set; }
 
         [Display(Name ="Completion Time")]

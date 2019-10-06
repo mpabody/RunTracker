@@ -30,7 +30,7 @@ namespace RunTracker.Models
 
         [ForeignKey("Shoe")]
         [Display(Name = "Shoe")]
-        public int ShoeID { get; set; }
+        public int? ShoeID { get; set; }
         public virtual Shoe Shoe { get; set; }
     }
 }

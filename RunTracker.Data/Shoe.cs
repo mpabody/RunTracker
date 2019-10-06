@@ -20,5 +20,7 @@ namespace RunTracker.Data
 
         [Required]
         public Guid UserID { get; set; }
+
+        public string Description { get; set; }
     }
 }

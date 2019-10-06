@@ -40,5 +40,7 @@ namespace RunTracker.Models
                 return workoutMiles + raceMiles;
             }
         }
+
+        public string Description { get; set; }
     }
 }

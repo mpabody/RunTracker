@@ -25,7 +25,8 @@ namespace RunTracker.Services
                 {
                     UserID = _userID,
                     Brand = model.Brand,
-                    Name = model.Name
+                    Name = model.Name,
+                    Description = model.Description
                 };
 
             using (var _db = new ApplicationDbContext())
@@ -70,6 +71,7 @@ namespace RunTracker.Services
                         ShoeID = entity.ShoeID,
                         Brand = entity.Brand,
                         Name = entity.Name,
+                        Description = entity.Description,
                         Workouts = _db.Workouts.Where(w => w.ShoeID == entity.ShoeID).ToList(),
                         Races = _db.Races.Where(r => r.ShoeID == entity.ShoeID).ToList()
                     };
@@ -87,6 +89,7 @@ namespace RunTracker.Services
 
                 entity.Brand = model.Brand;
                 entity.Name = model.Name;
+                entity.Description = model.Description;
 
                 return _db.SaveChanges() == 1;
             }

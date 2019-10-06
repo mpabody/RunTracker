@@ -13,6 +13,7 @@ namespace RunTracker.Models
     {
         public int WorkoutID { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
@@ -25,7 +26,7 @@ namespace RunTracker.Models
         public string Comments { get; set; }
 
         [ForeignKey("Shoe")]
-        public int ShoeID { get; set; }
+        public int? ShoeID { get; set; }
         public virtual Shoe Shoe { get; set; }
     }
 }

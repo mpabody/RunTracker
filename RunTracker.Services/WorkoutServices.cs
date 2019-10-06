@@ -59,7 +59,7 @@ namespace RunTracker.Services
             }
         }
 
-        public WorkoutDetail GetWorkoutByID(int id)
+        public WorkoutDetail GetWorkoutByID(int? id)
         {
             using (var _db = new ApplicationDbContext())
             {

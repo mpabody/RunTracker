@@ -66,7 +66,8 @@ namespace BlueBadgeRunTracker.Controllers
                 {
                     ShoeID = detail.ShoeID,
                     Brand = detail.Brand,
-                    Name = detail.Name
+                    Name = detail.Name,
+                    Description = detail.Description
                 };
 
             return View(model);
