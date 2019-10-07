@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Distance)
+            @Html.ActionLink("Distance", "Index", new { sortOrder = ViewBag.DistSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Shoe)
+            @Html.ActionLink("Shoe", "Index", new { sortOrder = ViewBag.ShoeSort })
         </th>
         <th></th>
     </tr>

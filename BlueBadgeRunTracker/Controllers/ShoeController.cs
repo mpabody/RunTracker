@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using BlueBadgeRunTracker.Data;
+using Microsoft.AspNet.Identity;
 using RunTracker.Models;
 using RunTracker.Services;
 using System;
@@ -12,12 +13,34 @@ namespace BlueBadgeRunTracker.Controllers
     [Authorize]
     public class ShoeController : Controller
     {
+        private ApplicationDbContext _db = new ApplicationDbContext();
+
         // GET: Shoe
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new ShoeService(userID);
             var model = service.GetShoes();
+
+
+            ViewBag.NameSortAlph = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.MilesRunSort = sortOrder == "Mileage" ? "mileage_desc" : "Mileage";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    model = model.OrderByDescending(s => s.Name);
+                    break;
+                case "Mileage":
+                    model = model.OrderBy(s => s.MilesRun);
+                    break;
+                case "mileage_desc":
+                    model = model.OrderByDescending(s => s.MilesRun);
+                    break;
+                default:
+                    model = model.OrderBy(s => s.Name);
+                    break;
+            }
 
             return View(model);
         }

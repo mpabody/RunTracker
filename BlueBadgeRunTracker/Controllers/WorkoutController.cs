@@ -16,11 +16,37 @@ namespace BlueBadgeRunTracker.Controllers
         private ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: Workout
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new WorkoutService(userID);
             var model = service.GetWorkouts();
+
+            ViewBag.DateSort = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+            ViewBag.DistSort = sortOrder == "Distance" ? "dist_desc" : "Distance";
+            ViewBag.ShoeSort = sortOrder == "Shoe" ? "shoe_desc" : "Shoe";
+
+            switch (sortOrder)
+            {
+                case "date_desc":
+                    model = model.OrderByDescending(s => s.Date);
+                    break;
+                case "Distance":
+                    model = model.OrderBy(s => s.Distance);
+                    break;
+                case "distance_desc":
+                    model = model.OrderByDescending(s => s.Distance);
+                    break;
+                case "Shoe":
+                    model = model.OrderBy(s => s.Shoe.Name);
+                    break;
+                case "shoe_desc":
+                    model = model.OrderByDescending(s => s.Shoe.Name);
+                    break;
+                default:
+                    model = model.OrderBy(s => s.Date);
+                    break;
+            }
 
             return View(model);
         }
