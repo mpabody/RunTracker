@@ -16,7 +16,7 @@ namespace BlueBadgeRunTracker.Controllers
         private ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: Shoe
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new ShoeService(userID);
@@ -25,6 +25,12 @@ namespace BlueBadgeRunTracker.Controllers
 
             ViewBag.NameSortAlph = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.MilesRunSort = sortOrder == "Mileage" ? "mileage_desc" : "Mileage";
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(m => m.Name.ToLower().Contains(searchString)
+                                || m.MilesRun.ToString().Contains(searchString));
+            }
 
             switch (sortOrder)
             {

@@ -16,7 +16,7 @@ namespace BlueBadgeRunTracker.Controllers
         private ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: Workout
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new WorkoutService(userID);
@@ -26,13 +26,20 @@ namespace BlueBadgeRunTracker.Controllers
             ViewBag.DistSort = sortOrder == "Distance" ? "dist_desc" : "Distance";
             ViewBag.ShoeSort = sortOrder == "Shoe" ? "shoe_desc" : "Shoe";
 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(m => m.Date.ToString().Contains(searchString)
+                                || m.Distance.ToString().Contains(searchString)
+                                || m.Shoe.Name.ToLower().Contains(searchString));
+            }
+
             switch (sortOrder)
             {
                 case "date_desc":
-                    model = model.OrderByDescending(s => s.Date);
+                    model = model.OrderBy(s => s.Date);
                     break;
                 case "Distance":
-                    model = model.OrderBy(s => s.Distance);
+                    model = model.OrderBy(s => s.Distance); // .ThenBy
                     break;
                 case "distance_desc":
                     model = model.OrderByDescending(s => s.Distance);
@@ -44,7 +51,7 @@ namespace BlueBadgeRunTracker.Controllers
                     model = model.OrderByDescending(s => s.Shoe.Name);
                     break;
                 default:
-                    model = model.OrderBy(s => s.Date);
+                    model = model.OrderByDescending(s => s.Date);
                     break;
             }
 
