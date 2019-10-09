@@ -43,9 +43,8 @@
         <td>
             @Html.ActionLink("Edit", "EditInterested", new { id = item.RaceID }) |
             @Html.ActionLink("Details", "DetailsInterested", new { id = item.RaceID }) |
-            @Html.ActionLink("Delete", "DeleteInterested", new { id = item.RaceID }) |
-            @Html.ActionLink("I ran this race", "ConvertToRan", new { id = item.RaceID })
-            @*@Html.ActionLink("My Workouts", "Index", "Workout", null, new { @class = "btn btn-primary btn-large" })*@
+            @Html.ActionLink("Delete", "DeleteInterested", new { id = item.RaceID }) <br />
+            @Html.ActionLink("I ran this race", "ConvertToRan", new { id = item.RaceID }, new { @class = "btn btn-primary btn-xs" })
         </td>
     </tr>
 }
