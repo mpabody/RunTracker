@@ -112,3 +112,7 @@ C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\BlueBadgeRunTracker\b
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\BlueBadgeRunTracker\obj\Debug\RunTracker.WebMVC.csproj.CopyComplete
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\BlueBadgeRunTracker\obj\Debug\BlueBadgeRunTracker.dll
 C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\BlueBadgeRunTracker\obj\Debug\BlueBadgeRunTracker.pdb
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\BlueBadgeRunTracker\bin\PagedList.dll
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\BlueBadgeRunTracker\bin\PagedList.Mvc.dll
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\BlueBadgeRunTracker\bin\PagedList.xml
+C:\Eleven Fifty Academy\DotNetProjects\BlueBadgeRunTracker\BlueBadgeRunTracker\bin\PagedList.Mvc.xml

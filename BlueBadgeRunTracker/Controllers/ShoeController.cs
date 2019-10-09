@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace BlueBadgeRunTracker.Controllers
 {
@@ -16,15 +17,26 @@ namespace BlueBadgeRunTracker.Controllers
         private ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: Shoe
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new ShoeService(userID);
             var model = service.GetShoes();
 
-
-            ViewBag.NameSortAlph = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.MilesRunSort = sortOrder == "Mileage" ? "mileage_desc" : "Mileage";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -38,17 +50,19 @@ namespace BlueBadgeRunTracker.Controllers
                     model = model.OrderByDescending(s => s.Name);
                     break;
                 case "Mileage":
-                    model = model.OrderBy(s => s.MilesRun);
+                    model = model.OrderByDescending(s => s.MilesRun);
                     break;
                 case "mileage_desc":
-                    model = model.OrderByDescending(s => s.MilesRun);
+                    model = model.OrderBy(s => s.MilesRun);
                     break;
                 default:
                     model = model.OrderBy(s => s.Name);
                     break;
             }
 
-            return View(model);
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
 
         // GET : Create

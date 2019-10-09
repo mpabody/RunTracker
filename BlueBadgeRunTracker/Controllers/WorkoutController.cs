@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace BlueBadgeRunTracker.Controllers
 {
@@ -16,15 +17,27 @@ namespace BlueBadgeRunTracker.Controllers
         private ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: Workout
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new WorkoutService(userID);
             var model = service.GetWorkouts();
 
-            ViewBag.DateSort = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.DateSort = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
             ViewBag.DistSort = sortOrder == "Distance" ? "dist_desc" : "Distance";
             ViewBag.ShoeSort = sortOrder == "Shoe" ? "shoe_desc" : "Shoe";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -35,13 +48,13 @@ namespace BlueBadgeRunTracker.Controllers
 
             switch (sortOrder)
             {
-                case "date_desc":
+                case "Date":
                     model = model.OrderBy(s => s.Date);
                     break;
                 case "Distance":
                     model = model.OrderBy(s => s.Distance); // .ThenBy
                     break;
-                case "distance_desc":
+                case "dist_desc":
                     model = model.OrderByDescending(s => s.Distance);
                     break;
                 case "Shoe":
@@ -50,12 +63,14 @@ namespace BlueBadgeRunTracker.Controllers
                 case "shoe_desc":
                     model = model.OrderByDescending(s => s.Shoe.Name);
                     break;
-                default:
+                default: // Date Decending
                     model = model.OrderByDescending(s => s.Date);
                     break;
             }
 
-            return View(model);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
 
         // GET : Create

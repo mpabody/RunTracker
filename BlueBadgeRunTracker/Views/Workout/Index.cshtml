@@ -1,4 +1,6 @@
-﻿@model IEnumerable<RunTracker.Models.WorkoutListItem>
+﻿@model PagedList.IPagedList<RunTracker.Models.WorkoutListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -10,10 +12,10 @@
     @Html.ActionLink("Add A New Workout", "Create")
 </p>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Workout", FormMethod.Get))
 {
     <p>
-        Find by name: @Html.TextBox("SearchString")
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
@@ -21,13 +23,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSort })
+            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSort, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Distance", "Index", new { sortOrder = ViewBag.DistSort })
+            @Html.ActionLink("Distance (Miles)", "Index", new { sortOrder = ViewBag.DistSort, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Shoe", "Index", new { sortOrder = ViewBag.ShoeSort })
+            @Html.ActionLink("Shoe", "Index", new { sortOrder = ViewBag.ShoeSort, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -53,3 +55,8 @@
     }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
