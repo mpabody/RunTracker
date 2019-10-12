@@ -1,4 +1,6 @@
-﻿@model IEnumerable<RunTracker.Models.RaceModels.RaceListItem>
+﻿@model PagedList.IPagedList<RunTracker.Models.RaceModels.RaceListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "IndexInterested";
@@ -9,19 +11,28 @@
 <p>
     @Html.ActionLink("Add A New Race", "CreateInterested")
 </p>
+
+@using (Html.BeginForm("IndexInterested", "Race", FormMethod.Get))
+{
+    <p>
+        Search this list: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<div style="float: right;">@Html.ActionLink("View Races I've Run", "IndexRan", null, new { @class = "btn btn-primary btn-sm" })</div>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Name", "IndexInterested", new { sortOrder = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.ActionLink("Date", "IndexInterested", new { sortOrder = ViewBag.DateSort, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
+            @Html.ActionLink("Location", "IndexInterested", new { sortOrder = ViewBag.LocationSort, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Distance)
+            @Html.ActionLink("Distance", "IndexInterested", new { sortOrder = ViewBag.DistanceSort, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -51,3 +62,9 @@
     }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("IndexInterested",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

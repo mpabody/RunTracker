@@ -1,4 +1,6 @@
-﻿@model IEnumerable<RunTracker.Models.RaceModels.RaceListItem>
+﻿@model PagedList.IPagedList<RunTracker.Models.RaceModels.RaceListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "IndexRan";
@@ -9,46 +11,61 @@
 <p>
     @Html.ActionLink("Add A New Race", "CreateRan")
 </p>
+
+@using (Html.BeginForm("IndexRan", "Race", FormMethod.Get))
+{
+    <p>
+        Search this list: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<div style="float: right;">@Html.ActionLink("View Races I'm Interested In", "IndexInterested", null, new { @class = "btn btn-primary btn-sm" })</div>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Name", "IndexRan", new { sortOrder = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.ActionLink("Date", "IndexRan", new { sortOrder = ViewBag.DateSort, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
+            @Html.ActionLink("Location", "IndexRan", new { sortOrder = ViewBag.LocationSort, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Distance)
+            @Html.ActionLink("Distance", "IndexRan", new { sortOrder = ViewBag.DistanceSort, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        
+    @foreach (var item in Model)
+    {
+        <tr>
+
             @Html.HiddenFor(modelItem => item.RaceID)
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Distance)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditRan", new { id=item.RaceID }) |
-            @Html.ActionLink("Details", "DetailsRan", new { id=item.RaceID }) |
-            @Html.ActionLink("Delete", "DeleteRan", new { id=item.RaceID })
-        </td>
-    </tr>
-}
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distance)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditRan", new { id = item.RaceID }) |
+                @Html.ActionLink("Details", "DetailsRan", new { id = item.RaceID }) |
+                @Html.ActionLink("Delete", "DeleteRan", new { id = item.RaceID })
+            </td>
+        </tr>
+    }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("IndexRan",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

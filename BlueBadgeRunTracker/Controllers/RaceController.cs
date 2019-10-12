@@ -1,5 +1,6 @@
 ﻿using BlueBadgeRunTracker.Data;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using RunTracker.Models.RaceModels;
 using RunTracker.Services;
 using System;
@@ -29,13 +30,68 @@ namespace BlueBadgeRunTracker.Controllers
 
         // GET: Race
         [ActionName("IndexInterested")]
-        public ActionResult IndexInterested()
+        public ActionResult IndexInterested(string sortOrder, string searchString, string currentFilter, int? page)
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new RaceService(userID);
             var model = service.GetRacesInterested();
 
-            return View(model);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.DateSort = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+            ViewBag.Name = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewBag.LocationSort = sortOrder == "Location" ? "location_desc" : "Location";
+            ViewBag.DistSort = sortOrder == "Distance" ? "dist_desc" : "Distance";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(m => m.Name.ToLower().Contains(searchString)
+                                || m.Distance.ToString().Contains(searchString)
+                                || m.Location.Contains(searchString)
+                                || m.Date.ToString().Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "date_desc":
+                    model = model.OrderByDescending(s => s.Date);
+                    break;
+                case "Name":
+                    model = model.OrderBy(s => s.Name);
+                    break;
+                case "name_desc":
+                    model = model.OrderByDescending(s => s.Name);
+                    break;
+                case "Distance":
+                    model = model.OrderBy(s => s.Distance);
+                    break;
+                case "dist_desc":
+                    model = model.OrderByDescending(s => s.Distance);
+                    break;
+                case "Location":
+                    model = model.OrderBy(s => s.Location);
+                    break;
+                case "location_desc":
+                    model = model.OrderByDescending(s => s.Location);
+                    break;
+                default: // Date Decending
+                    model = model.OrderBy(s => s.Date);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
 
         // GET : Create
@@ -152,13 +208,68 @@ namespace BlueBadgeRunTracker.Controllers
 
         // GET: Race
         [ActionName("IndexRan")]
-        public ActionResult IndexRan()
+        public ActionResult IndexRan(string sortOrder, string searchString, string currentFilter, int? page)
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new RaceService(userID);
             var model = service.GetRacesRan();
 
-            return View(model);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.DateSort = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
+            ViewBag.NameSort = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewBag.LocationSort = sortOrder == "Location" ? "location_desc" : "Location";
+            ViewBag.DistSort = sortOrder == "Distance" ? "dist_desc" : "Distance";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(m => m.Name.ToLower().Contains(searchString)
+                                || m.Distance.ToString().Contains(searchString)
+                                || m.Location.ToLower().Contains(searchString)
+                                || m.Date.ToString().Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "Date":
+                    model = model.OrderBy(s => s.Date);
+                    break;
+                case "Name":
+                    model = model.OrderBy(s => s.Name);
+                    break;
+                case "name_desc":
+                    model = model.OrderByDescending(s => s.Name);
+                    break;
+                case "Distance":
+                    model = model.OrderBy(s => s.Distance);
+                    break;
+                case "dist_desc":
+                    model = model.OrderByDescending(s => s.Distance);
+                    break;
+                case "Location":
+                    model = model.OrderBy(s => s.Location);
+                    break;
+                case "location_desc":
+                    model = model.OrderByDescending(s => s.Location);
+                    break;
+                default: // Date Decending
+                    model = model.OrderByDescending(s => s.Date);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
 
 
