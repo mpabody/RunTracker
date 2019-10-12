@@ -15,6 +15,18 @@ namespace BlueBadgeRunTracker.Controllers
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
 
+        //--------------------------------------
+        //[ActionName("AllRaces")]
+        //public PartialViewResult RacePartials()
+        //{
+        //    var userID = Guid.Parse(User.Identity.GetUserId());
+        //    var service = new RaceService(userID);
+        //    var model = service.GetAllRaces();
+
+        //    return PartialView(model);
+        //}
+        //--------------------------------------
+
         // GET: Race
         [ActionName("IndexInterested")]
         public ActionResult IndexInterested()

@@ -18,6 +18,30 @@ namespace RunTracker.Services
             _userID = userID;
         }
 
+        //--------------------------------------------
+        // Display all races
+        //public IEnumerable<RaceListItem> GetAllRaces()
+        //{
+        //    using (var _db = new ApplicationDbContext())
+        //    {
+        //        var querey = _db.Races
+        //            .Where(r => r.UserID == _userID)
+        //            .Select(
+        //            r =>
+        //                new RaceListItem
+        //                {
+        //                    RaceID = r.RaceID,
+        //                    Name = r.Name,
+        //                    Date = r.Date,
+        //                    Location = r.Location,
+        //                    Distance = r.Distance
+        //                }
+        //            );
+        //        return querey.ToList();
+        //    }
+        //}
+        //------------------------------------------
+
         // Display list of Races I'm interested in
         public IEnumerable<RaceListItem> GetRacesInterested()
         {

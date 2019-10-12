@@ -1,13 +1,13 @@
-﻿@model IEnumerable<RunTracker.Models.RaceModels.RaceListItem>
-
+﻿
+@model IEnumerable<RunTracker.Models.RaceModels.RaceListItem>
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
 @{
-    ViewBag.Title = "IndexInterested";
+    ViewBag.Title = "_RacesRan_Partial";
 }
 
-<h2>Races I'm Interested In</h2>
-
 <p>
-    @Html.ActionLink("Add A New Race", "CreateInterested")
+    @Html.ActionLink("Add A New Race", "CreateRan")
 </p>
 <table class="table">
     <tr>
@@ -29,6 +29,9 @@
     @foreach (var item in Model)
     {
         <tr>
+
+            @Html.HiddenFor(modelItem => item.RaceID)
+
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -42,10 +45,9 @@
                 @Html.DisplayFor(modelItem => item.Distance)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditInterested", new { id = item.RaceID }) |
-                @Html.ActionLink("Details", "DetailsInterested", new { id = item.RaceID }) |
-                @Html.ActionLink("Delete", "DeleteInterested", new { id = item.RaceID }) <br />
-                @Html.ActionLink("I ran this race", "ConvertToRan", new { id = item.RaceID }, new { @class = "btn btn-primary btn-xs" })
+                @Html.ActionLink("Edit", "EditRan", new { id = item.RaceID }) |
+                @Html.ActionLink("Details", "DetailsRan", new { id = item.RaceID }) |
+                @Html.ActionLink("Delete", "DeleteRan", new { id = item.RaceID })
             </td>
         </tr>
     }
