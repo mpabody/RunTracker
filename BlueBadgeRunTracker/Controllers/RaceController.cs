@@ -11,24 +11,160 @@ using System.Web.Mvc;
 
 namespace BlueBadgeRunTracker.Controllers
 {
+    public class AllRacesModel
+    {
+        public IPagedList InterestedRaces { get; set; }
+
+        public IPagedList RanRaces { get; set; }
+    }
+
     [Authorize]
     public class RaceController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
 
         //--------------------------------------
-        //[ActionName("AllRaces")]
-        //public PartialViewResult RacePartials()
-        //{
-        //    var userID = Guid.Parse(User.Identity.GetUserId());
-        //    var service = new RaceService(userID);
-        //    var model = service.GetAllRaces();
+        [ActionName("AllRaces")]
+        public PartialViewResult RacePartials()
+        {
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var service = new RaceService(userID);
+            var model = service.GetAllRaces();
 
-        //    return PartialView(model);
-        //}
+            return PartialView(model);
+        }
         //--------------------------------------
 
-        // GET: Race
+        // Index All races
+        [ActionName("IndexAll")]
+        public ActionResult IndexAll(string sortOrderI, string sortOrderR, string searchStringI, string searchStringR, string currentFilterI, string currentFilterR, int? pageI, int? pageR)
+        {
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var service = new RaceService(userID);
+            var model = service.GetAllRaces();
+
+            ViewBag.CurrentSortI = sortOrderI;
+            ViewBag.DateSortI = String.IsNullOrEmpty(sortOrderI) ? "date_desc" : "";
+            ViewBag.NameI = sortOrderI == "Name" ? "name_desc" : "Name";
+            ViewBag.LocationSortI = sortOrderI == "Location" ? "location_desc" : "Location";
+            ViewBag.DistSortI = sortOrderI == "Distance" ? "dist_desc" : "Distance";
+
+
+            if (searchStringI != null)
+            {
+                pageI = 1;
+            }
+            else
+            {
+                searchStringI = currentFilterI;
+            }
+
+            ViewBag.CurrentFilterI = searchStringI;
+
+            if (!String.IsNullOrEmpty(searchStringI))
+            {
+                model = model.Where(m => m.Name.ToLower().Contains(searchStringI)
+                                || m.Distance.ToString().Contains(searchStringI)
+                                || m.Location.Contains(searchStringI)
+                                || m.Date.ToString().Contains(searchStringI));
+            }
+
+            switch (sortOrderI)
+            {
+                case "date_desc":
+                    model = model.OrderByDescending(s => s.Date);
+                    break;
+                case "Name":
+                    model = model.OrderBy(s => s.Name);
+                    break;
+                case "name_desc":
+                    model = model.OrderByDescending(s => s.Name);
+                    break;
+                case "Distance":
+                    model = model.OrderBy(s => s.Distance);
+                    break;
+                case "dist_desc":
+                    model = model.OrderByDescending(s => s.Distance);
+                    break;
+                case "Location":
+                    model = model.OrderBy(s => s.Location);
+                    break;
+                case "location_desc":
+                    model = model.OrderByDescending(s => s.Location);
+                    break;
+                default: // Date Decending
+                    model = model.OrderBy(s => s.Date);
+                    break;
+            }
+
+            ViewBag.CurrentSortR = sortOrderR;
+            ViewBag.DateSortR = String.IsNullOrEmpty(sortOrderR) ? "date_desc" : "";
+            ViewBag.NameR = sortOrderR == "Name" ? "name_desc" : "Name";
+            ViewBag.LocationSortR = sortOrderR == "Location" ? "location_desc" : "Location";
+            ViewBag.DistSortR = sortOrderR == "Distance" ? "dist_desc" : "Distance";
+
+            if (searchStringR != null)
+            {
+                pageR = 1;
+            }
+            else
+            {
+                searchStringR = currentFilterR;
+            }
+
+            ViewBag.CurrentFilterR = searchStringR;
+
+            if (!String.IsNullOrEmpty(searchStringR))
+            {
+                model = model.Where(m => m.Name.ToLower().Contains(searchStringR)
+                                || m.Distance.ToString().Contains(searchStringR)
+                                || m.Location.Contains(searchStringR)
+                                || m.Date.ToString().Contains(searchStringR));
+            }
+
+            switch (sortOrderI)
+            {
+                case "date_desc":
+                    model = model.OrderByDescending(s => s.Date);
+                    break;
+                case "Name":
+                    model = model.OrderBy(s => s.Name);
+                    break;
+                case "name_desc":
+                    model = model.OrderByDescending(s => s.Name);
+                    break;
+                case "Distance":
+                    model = model.OrderBy(s => s.Distance);
+                    break;
+                case "dist_desc":
+                    model = model.OrderByDescending(s => s.Distance);
+                    break;
+                case "Location":
+                    model = model.OrderBy(s => s.Location);
+                    break;
+                case "location_desc":
+                    model = model.OrderByDescending(s => s.Location);
+                    break;
+                default: // Date Decending
+                    model = model.OrderBy(s => s.Date);
+                    break;
+            }
+
+            int pageSizeI = 10;
+            int pageNumberI = (pageI ?? 1);
+            int pageSizeR = 10;
+            int pageNumberR = (pageR ?? 1);
+
+            var newModel = new AllRacesModel
+            {
+                InterestedRaces = model.ToPagedList(pageNumberI, pageSizeI),
+                RanRaces = model.ToPagedList(pageNumberR, pageSizeR)
+            };
+
+            return View(model);
+        }
+
+        // GET: Races Interested
         [ActionName("IndexInterested")]
         public ActionResult IndexInterested(string sortOrder, string searchString, string currentFilter, int? page)
         {
@@ -201,9 +337,9 @@ namespace BlueBadgeRunTracker.Controllers
         }
 
 
-            // Interested
+        // Interested
         //-----------------------------------------------------------
-            // Ran
+        // Ran
 
 
         // GET: Race

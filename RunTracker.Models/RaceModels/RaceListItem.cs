@@ -22,5 +22,9 @@ namespace RunTracker.Models.RaceModels
 
         [Display(Name = "Distance (Miles)")]
         public double Distance { get; set; }
+
+        // Needed for AllRaces Index
+        [Display(Name = "Completion Time")]
+        public string CompletionTime { get; set; }
     }
 }

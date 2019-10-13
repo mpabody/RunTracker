@@ -273,6 +273,7 @@
     <Content Include="Views\Race\ConvertToRan.cshtml" />
     <Content Include="Views\Race\_RacesRan_Partial.cshtml" />
     <Content Include="Views\Race\AllRaces.cshtml" />
+    <Content Include="Views\Race\IndexAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
