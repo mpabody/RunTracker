@@ -13,9 +13,9 @@ namespace BlueBadgeRunTracker.Controllers
 {
     public class AllRacesModel
     {
-        public IPagedList InterestedRaces { get; set; }
+        public IPagedList<RaceListItem> InterestedRaces { get; set; }
 
-        public IPagedList RanRaces { get; set; }
+        public IPagedList<RaceListItem> RanRaces { get; set; }
     }
 
     [Authorize]
@@ -41,13 +41,15 @@ namespace BlueBadgeRunTracker.Controllers
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new RaceService(userID);
-            var model = service.GetAllRaces();
+            var races = service.GetAllRaces();
+            var modelI = races.Where(r => r.CompletionTime == null);
+            var modelR = races.Where(r => r.CompletionTime != null);
 
             ViewBag.CurrentSortI = sortOrderI;
             ViewBag.DateSortI = String.IsNullOrEmpty(sortOrderI) ? "date_desc" : "";
-            ViewBag.NameI = sortOrderI == "Name" ? "name_desc" : "Name";
+            ViewBag.NameSortI = sortOrderI == "Name" ? "name_desc" : "Name";
             ViewBag.LocationSortI = sortOrderI == "Location" ? "location_desc" : "Location";
-            ViewBag.DistSortI = sortOrderI == "Distance" ? "dist_desc" : "Distance";
+            ViewBag.DistanceSortI = sortOrderI == "Distance" ? "dist_desc" : "Distance";
 
 
             if (searchStringI != null)
@@ -63,45 +65,47 @@ namespace BlueBadgeRunTracker.Controllers
 
             if (!String.IsNullOrEmpty(searchStringI))
             {
-                model = model.Where(m => m.Name.ToLower().Contains(searchStringI)
+                modelI = modelI.Where(m => m.Name.ToLower().Contains(searchStringI)
                                 || m.Distance.ToString().Contains(searchStringI)
-                                || m.Location.Contains(searchStringI)
+                                || m.Location.ToLower().Contains(searchStringI)
                                 || m.Date.ToString().Contains(searchStringI));
             }
 
             switch (sortOrderI)
             {
                 case "date_desc":
-                    model = model.OrderByDescending(s => s.Date);
+                    modelI = modelI.OrderByDescending(s => s.Date);
                     break;
                 case "Name":
-                    model = model.OrderBy(s => s.Name);
+                    modelI = modelI.OrderBy(s => s.Name);
                     break;
                 case "name_desc":
-                    model = model.OrderByDescending(s => s.Name);
+                    modelI = modelI.OrderByDescending(s => s.Name);
                     break;
                 case "Distance":
-                    model = model.OrderBy(s => s.Distance);
+                    modelI = modelI.OrderBy(s => s.Distance);
                     break;
                 case "dist_desc":
-                    model = model.OrderByDescending(s => s.Distance);
+                    modelI = modelI.OrderByDescending(s => s.Distance);
                     break;
                 case "Location":
-                    model = model.OrderBy(s => s.Location);
+                    modelI = modelI.OrderBy(s => s.Location);
                     break;
                 case "location_desc":
-                    model = model.OrderByDescending(s => s.Location);
+                    modelI = modelI.OrderByDescending(s => s.Location);
                     break;
                 default: // Date Decending
-                    model = model.OrderBy(s => s.Date);
+                    modelI = modelI.OrderBy(s => s.Date);
                     break;
             }
 
+
+
             ViewBag.CurrentSortR = sortOrderR;
             ViewBag.DateSortR = String.IsNullOrEmpty(sortOrderR) ? "date_desc" : "";
-            ViewBag.NameR = sortOrderR == "Name" ? "name_desc" : "Name";
+            ViewBag.NameSortR = sortOrderR == "Name" ? "name_desc" : "Name";
             ViewBag.LocationSortR = sortOrderR == "Location" ? "location_desc" : "Location";
-            ViewBag.DistSortR = sortOrderR == "Distance" ? "dist_desc" : "Distance";
+            ViewBag.DistanceSortR = sortOrderR == "Distance" ? "dist_desc" : "Distance";
 
             if (searchStringR != null)
             {
@@ -116,37 +120,37 @@ namespace BlueBadgeRunTracker.Controllers
 
             if (!String.IsNullOrEmpty(searchStringR))
             {
-                model = model.Where(m => m.Name.ToLower().Contains(searchStringR)
+                modelR = modelR.Where(m => m.Name.ToLower().Contains(searchStringR)
                                 || m.Distance.ToString().Contains(searchStringR)
                                 || m.Location.Contains(searchStringR)
                                 || m.Date.ToString().Contains(searchStringR));
             }
 
-            switch (sortOrderI)
+            switch (sortOrderR)
             {
                 case "date_desc":
-                    model = model.OrderByDescending(s => s.Date);
+                    modelR = modelR.OrderByDescending(s => s.Date);
                     break;
                 case "Name":
-                    model = model.OrderBy(s => s.Name);
+                    modelR = modelR.OrderBy(s => s.Name);
                     break;
                 case "name_desc":
-                    model = model.OrderByDescending(s => s.Name);
+                    modelR = modelR.OrderByDescending(s => s.Name);
                     break;
                 case "Distance":
-                    model = model.OrderBy(s => s.Distance);
+                    modelR = modelR.OrderBy(s => s.Distance);
                     break;
                 case "dist_desc":
-                    model = model.OrderByDescending(s => s.Distance);
+                    modelR = modelR.OrderByDescending(s => s.Distance);
                     break;
                 case "Location":
-                    model = model.OrderBy(s => s.Location);
+                    modelR = modelR.OrderBy(s => s.Location);
                     break;
                 case "location_desc":
-                    model = model.OrderByDescending(s => s.Location);
+                    modelR = modelR.OrderByDescending(s => s.Location);
                     break;
                 default: // Date Decending
-                    model = model.OrderBy(s => s.Date);
+                    modelR = modelR.OrderBy(s => s.Date);
                     break;
             }
 
@@ -157,11 +161,11 @@ namespace BlueBadgeRunTracker.Controllers
 
             var newModel = new AllRacesModel
             {
-                InterestedRaces = model.ToPagedList(pageNumberI, pageSizeI),
-                RanRaces = model.ToPagedList(pageNumberR, pageSizeR)
+                InterestedRaces = modelI.ToPagedList(pageNumberI, pageSizeI),
+                RanRaces = modelR.ToPagedList(pageNumberR, pageSizeR)
             };
 
-            return View(model);
+            return View(newModel);
         }
 
         // GET: Races Interested
