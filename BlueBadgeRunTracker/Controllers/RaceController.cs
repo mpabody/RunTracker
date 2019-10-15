@@ -35,7 +35,12 @@ namespace BlueBadgeRunTracker.Controllers
         }
         //--------------------------------------
 
+
+
         // Index All races
+
+        // ---Races Interested---
+
         [ActionName("IndexAll")]
         public ActionResult IndexAll(string sortOrderI, string sortOrderR, string searchStringI, string searchStringR, string currentFilterI, string currentFilterR, int? pageI, int? pageR)
         {
@@ -99,7 +104,7 @@ namespace BlueBadgeRunTracker.Controllers
                     break;
             }
 
-
+            // ---Races Ran---
 
             ViewBag.CurrentSortR = sortOrderR;
             ViewBag.DateSortR = String.IsNullOrEmpty(sortOrderR) ? "date_desc" : "";
@@ -122,7 +127,7 @@ namespace BlueBadgeRunTracker.Controllers
             {
                 modelR = modelR.Where(m => m.Name.ToLower().Contains(searchStringR)
                                 || m.Distance.ToString().Contains(searchStringR)
-                                || m.Location.Contains(searchStringR)
+                                || m.Location.ToLower().Contains(searchStringR)
                                 || m.Date.ToString().Contains(searchStringR));
             }
 
@@ -154,9 +159,9 @@ namespace BlueBadgeRunTracker.Controllers
                     break;
             }
 
-            int pageSizeI = 10;
+            int pageSizeI = 3;
             int pageNumberI = (pageI ?? 1);
-            int pageSizeR = 10;
+            int pageSizeR = 6;
             int pageNumberR = (pageR ?? 1);
 
             var newModel = new AllRacesModel

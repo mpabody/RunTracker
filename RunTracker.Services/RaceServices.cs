@@ -274,7 +274,7 @@ namespace RunTracker.Services
                 entity.Distance = model.Distance;
                 entity.Description = model.Description;
                 entity.Comments = model.Comments;
-                entity.CompletionTime = "";
+                entity.CompletionTime = model.CompletionTime;
                 entity.ShoeID = model.ShoeID;
 
                 return _db.SaveChanges() == 1;

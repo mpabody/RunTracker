@@ -17,22 +17,22 @@
         @using (Html.BeginForm("IndexAll", "Race", FormMethod.Get))
         {
             <p>
-                Search this list: @Html.TextBox("SearchString", ViewBag.CurrentFilterR as string)
+                Search this list: @Html.TextBox("SearchStringR", ViewBag.CurrentFilterR as string)
                 <input type="submit" value="Search" />
             </p>
         }
         <table class="table">
             <tr>
                 <th>
-                    @Html.ActionLink("Name", "IndexAll", new { sortOrderR = ViewBag.NameSortR, sortOrderI = ViewBag.CurrentSortI, currentFilterR = ViewBag.CurrentFilterR, currentFilterI = ViewBag.CurrentFilterI })
+                    @Html.ActionLink("Name", "IndexAll", new { sortOrderR = ViewBag.NameSortR, sortOrderI = ViewBag.CurrentSortI, currentFilterR = ViewBag.CurrentFilterR, currentFilterI = ViewBag.CurrentFilterI, pageI = Model.InterestedRaces.PageNumber })
                 </th>
                 <th>
-                    @Html.ActionLink("Date", "IndexAll", new { sortOrderR = ViewBag.DateSortR, sortOrderI = ViewBag.CurrentSortI, currentFilterR = ViewBag.CurrentFilterR, currentFilterI = ViewBag.CurrentFilterI })
+                    @Html.ActionLink("Date", "IndexAll", new { sortOrderR = ViewBag.DateSortR, sortOrderI = ViewBag.CurrentSortI, currentFilterR = ViewBag.CurrentFilterR, currentFilterI = ViewBag.CurrentFilterI, pageI = Model.InterestedRaces.PageNumber })
                 <th>
-                    @Html.ActionLink("Location", "IndexAll", new { sortOrderR = ViewBag.LocationSortR, sortOrderI = ViewBag.CurrentSortI, currentFilterR = ViewBag.CurrentFilterR, currentFilterI = ViewBag.CurrentFilterI })
+                    @Html.ActionLink("Location", "IndexAll", new { sortOrderR = ViewBag.LocationSortR, sortOrderI = ViewBag.CurrentSortI, currentFilterR = ViewBag.CurrentFilterR, currentFilterI = ViewBag.CurrentFilterI, pageI = Model.InterestedRaces.PageNumber })
                 </th>
                 <th>
-                    @Html.ActionLink("Distance", "IndexAll", new { sortOrderR = ViewBag.DistanceSortR, sortOrderI = ViewBag.CurrentSortI, currentFilterR = ViewBag.CurrentFilterR, currentFilterI = ViewBag.CurrentFilterI })
+                    @Html.ActionLink("Distance", "IndexAll", new { sortOrderR = ViewBag.DistanceSortR, sortOrderI = ViewBag.CurrentSortI, currentFilterR = ViewBag.CurrentFilterR, currentFilterI = ViewBag.CurrentFilterI, pageI = Model.InterestedRaces.PageNumber })
                 </th>
                 <th></th>
             </tr>
@@ -68,8 +68,8 @@
         <br />
         Page @(Model.RanRaces.PageCount < Model.RanRaces.PageNumber ? 0 : Model.RanRaces.PageNumber) of @Model.RanRaces.PageCount
 
-        @Html.PagedListPager(Model.RanRaces, page => Url.Action("IndexAll",
-            new { page, sortOrderR = ViewBag.CurrentSortR, currentFilterR = ViewBag.CurrentFilterR }))
+        @Html.PagedListPager(Model.RanRaces, pageR => Url.Action("IndexAll",
+            new { pageR, sortOrderR = ViewBag.CurrentSortR, currentFilterR = ViewBag.CurrentFilterR, sortOrderI = ViewBag.CurrentSortI, currentFilterI = ViewBag.CurrentFilterI, pageI = Model.InterestedRaces.PageNumber }))
 
     </div>
 
@@ -84,7 +84,7 @@
         @using (Html.BeginForm("IndexAll", "Race", FormMethod.Get))
         {
             <p>
-                Search this list: @Html.TextBox("SearchString", ViewBag.CurrentFilterR as string)
+                Search this list: @Html.TextBox("SearchStringI", ViewBag.CurrentFilterR as string)
                 <input type="submit" value="Search" />
             </p>
         }
@@ -92,16 +92,16 @@
             <tr>
 
                 <th>
-                    @Html.ActionLink("Name", "IndexAll", new { sortOrderI = ViewBag.NameSortI, sortOrderR = ViewBag.CurrentSortR, currentFilterI = ViewBag.CurrentFilterI, currentFilterR = ViewBag.CurrentFilterR })
+                    @Html.ActionLink("Name", "IndexAll", new { sortOrderI = ViewBag.NameSortI, sortOrderR = ViewBag.CurrentSortR, currentFilterI = ViewBag.CurrentFilterI, currentFilterR = ViewBag.CurrentFilterR, pageR = Model.RanRaces.PageNumber })
                 </th>
                 <th>
-                    @Html.ActionLink("Date", "IndexAll", new { sortOrderI = ViewBag.DateSortI, sortOrderR = ViewBag.CurrentSortR, currentFilterI = ViewBag.CurrentFilterI, currentFilterR = ViewBag.CurrentFilterR })
+                    @Html.ActionLink("Date", "IndexAll", new { sortOrderI = ViewBag.DateSortI, sortOrderR = ViewBag.CurrentSortR, currentFilterI = ViewBag.CurrentFilterI, currentFilterR = ViewBag.CurrentFilterR, pageR = Model.RanRaces.PageNumber })
                 </th>
                 <th>
-                    @Html.ActionLink("Location", "IndexAll", new { sortOrderI = ViewBag.LocationSortI, sortOrderR = ViewBag.CurrentSortR, currentFilterI = ViewBag.CurrentFilterI, currentFilterR = ViewBag.CurrentFilterR })
+                    @Html.ActionLink("Location", "IndexAll", new { sortOrderI = ViewBag.LocationSortI, sortOrderR = ViewBag.CurrentSortR, currentFilterI = ViewBag.CurrentFilterI, currentFilterR = ViewBag.CurrentFilterR, pageR = Model.RanRaces.PageNumber })
                 </th>
                 <th>
-                    @Html.ActionLink("Distance", "IndexAll", new { sortOrderI = ViewBag.DistanceSortI, sortOrderR = ViewBag.CurrentSortR, currentFilterI = ViewBag.CurrentFilterI, currentFilterR = ViewBag.CurrentFilterR })
+                    @Html.ActionLink("Distance", "IndexAll", new { sortOrderI = ViewBag.DistanceSortI, sortOrderR = ViewBag.CurrentSortR, currentFilterI = ViewBag.CurrentFilterI, currentFilterR = ViewBag.CurrentFilterR, pageR = Model.RanRaces.PageNumber })
                 </th>
                 <th></th>
             </tr>
@@ -139,8 +139,8 @@
         <br />
         Page @(Model.InterestedRaces.PageCount < Model.InterestedRaces.PageNumber ? 0 : Model.InterestedRaces.PageNumber) of @Model.InterestedRaces.PageCount
 
-        @Html.PagedListPager(Model.InterestedRaces, page => Url.Action("IndexAll",
-            new { page, sortOrderI = ViewBag.CurrentSortI, currentFilterI = ViewBag.CurrentFilterI }))
+        @Html.PagedListPager(Model.InterestedRaces, pageI => Url.Action("IndexAll",
+            new { pageI, sortOrderI = ViewBag.CurrentSortI, currentFilterI = ViewBag.CurrentFilterI, sortOrderR = ViewBag.CurrentSortR, currentFilterR = ViewBag.CurrentFilterR, pageR = Model.RanRaces.PageNumber }))
 
     </div>
 </div>
