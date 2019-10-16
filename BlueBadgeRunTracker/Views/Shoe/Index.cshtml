@@ -6,20 +6,21 @@
     ViewBag.Title = "Index";
 }
 
-<h2>My Shoes</h2>
+<div class="PageHeading">
+    <h2>My Shoes</h2>
 
-<p>
-    @Html.ActionLink("Add a New Shoe", "Create")
-</p>
-
-@using (Html.BeginForm("Index", "Shoe", FormMethod.Get))
-{
     <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
+        @Html.ActionLink("Add a New Shoe", "Create")
     </p>
-}
 
+    @using (Html.BeginForm("Index", "Shoe", FormMethod.Get))
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
 <table class="table">
     <tr>
         <th>
@@ -49,7 +50,7 @@
     }
 
 </table>
-<br/>
+<br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("Index",

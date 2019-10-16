@@ -14,13 +14,13 @@
             <p>
                 @Html.ActionLink("Add a race I've run", "Create")
             </p>
-        @using (Html.BeginForm("IndexAll", "Race", FormMethod.Get))
-        {
-            <p>
-                Search this list: @Html.TextBox("SearchStringR", ViewBag.CurrentFilterR as string)
-                <input type="submit" value="Search" />
-            </p>
-        }
+            @using (Html.BeginForm("IndexAll", "Race", FormMethod.Get))
+            {
+                <p>
+                    Search this list: @Html.TextBox("SearchStringR", ViewBag.CurrentFilterR as string)
+                    <input type="submit" value="Search" />
+                </p>
+            }
         </div>
         <table class="table">
             <tr>
@@ -77,18 +77,21 @@
 
 
     <div class="col-lg-6">
-        <h2>Races I'm Interested In</h2>
-        <p>
-            @Html.ActionLink("Add a race I'm interested in", "CreateInterested")
-        </p>
+        <div class="PageHeading">
 
-        @using (Html.BeginForm("IndexAll", "Race", FormMethod.Get))
-        {
+            <h2>Races I'm Interested In</h2>
             <p>
-                Search this list: @Html.TextBox("SearchStringI", ViewBag.CurrentFilterR as string)
-                <input type="submit" value="Search" />
+                @Html.ActionLink("Add a race I'm interested in", "CreateInterested")
             </p>
-        }
+
+            @using (Html.BeginForm("IndexAll", "Race", FormMethod.Get))
+            {
+                <p>
+                    Search this list: @Html.TextBox("SearchStringI", ViewBag.CurrentFilterR as string)
+                    <input type="submit" value="Search" />
+                </p>
+            }
+        </div>
         <table class="table">
             <tr>
 

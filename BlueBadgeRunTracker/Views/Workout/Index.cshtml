@@ -6,57 +6,58 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Workouts</h2>
+        <div class="PageHeading">
+            <h2>Workouts</h2>
 
-<p>
-    @Html.ActionLink("Add A New Workout", "Create")
-</p>
+            <p>
+                @Html.ActionLink("Add A New Workout", "Create")
+            </p>
 
-@using (Html.BeginForm("Index", "Workout", FormMethod.Get))
-{
-    <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
-    </p>
-}
+            @using (Html.BeginForm("Index", "Workout", FormMethod.Get))
+            {
+                <p>
+                    Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                    <input type="submit" value="Search" />
+                </p>
+            }
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSort, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink("Distance (Miles)", "Index", new { sortOrder = ViewBag.DistSort, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink("Shoe", "Index", new { sortOrder = ViewBag.ShoeSort, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th></th>
+            </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSort, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.ActionLink("Distance (Miles)", "Index", new { sortOrder = ViewBag.DistSort, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.ActionLink("Shoe", "Index", new { sortOrder = ViewBag.ShoeSort, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Distance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Shoe.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.WorkoutID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.WorkoutID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.WorkoutID })
+                    </td>
+                </tr>
+            }
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Distance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Shoe.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.WorkoutID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.WorkoutID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.WorkoutID })
-            </td>
-        </tr>
-    }
+        </table>
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-</table>
-<br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
