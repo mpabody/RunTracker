@@ -107,7 +107,7 @@ namespace BlueBadgeRunTracker.Controllers
             // ---Races Ran---
 
             ViewBag.CurrentSortR = sortOrderR;
-            ViewBag.DateSortR = String.IsNullOrEmpty(sortOrderR) ? "date_desc" : "";
+            ViewBag.DateSortR = String.IsNullOrEmpty(sortOrderR) ? "Date" : "";
             ViewBag.NameSortR = sortOrderR == "Name" ? "name_desc" : "Name";
             ViewBag.LocationSortR = sortOrderR == "Location" ? "location_desc" : "Location";
             ViewBag.DistanceSortR = sortOrderR == "Distance" ? "dist_desc" : "Distance";
@@ -133,8 +133,8 @@ namespace BlueBadgeRunTracker.Controllers
 
             switch (sortOrderR)
             {
-                case "date_desc":
-                    modelR = modelR.OrderByDescending(s => s.Date);
+                case "Date":
+                    modelR = modelR.OrderBy(s => s.Date);
                     break;
                 case "Name":
                     modelR = modelR.OrderBy(s => s.Name);
@@ -155,13 +155,13 @@ namespace BlueBadgeRunTracker.Controllers
                     modelR = modelR.OrderByDescending(s => s.Location);
                     break;
                 default: // Date Decending
-                    modelR = modelR.OrderBy(s => s.Date);
+                    modelR = modelR.OrderByDescending(s => s.Date);
                     break;
             }
 
             int pageSizeI = 3;
             int pageNumberI = (pageI ?? 1);
-            int pageSizeR = 6;
+            int pageSizeR = 4;
             int pageNumberR = (pageR ?? 1);
 
             var newModel = new AllRacesModel
@@ -258,7 +258,7 @@ namespace BlueBadgeRunTracker.Controllers
             if (service.CreateRaceInterested(model))
             {
                 TempData["SaveResult"] = "Your race was created.";
-                return RedirectToAction("IndexInterested");
+                return RedirectToAction("IndexAll");
             };
 
             return View(model);
@@ -313,7 +313,7 @@ namespace BlueBadgeRunTracker.Controllers
             if (service.UpdateRaceInterested(model))
             {
                 TempData["SaveResult"] = "Your race was updated.";
-                return RedirectToAction("IndexInterested");
+                return RedirectToAction("IndexAll");
             }
 
             ModelState.AddModelError("", "Your race could not be updated.");
@@ -342,7 +342,7 @@ namespace BlueBadgeRunTracker.Controllers
 
             TempData["SaveResult"] = "Your shoe was deleted.";
 
-            return RedirectToAction("IndexInterested");
+            return RedirectToAction("IndexAll");
         }
 
 
@@ -442,7 +442,7 @@ namespace BlueBadgeRunTracker.Controllers
             if (service.CreateRaceRan(model))
             {
                 TempData["SaveResult"] = "Your race was created.";
-                return RedirectToAction("IndexRan");
+                return RedirectToAction("IndexAll");
             };
 
             ViewBag.ShoeID = new SelectList(_db.Shoes.ToList(), "ShoeID", "Name", model.ShoeID);
@@ -499,7 +499,7 @@ namespace BlueBadgeRunTracker.Controllers
             if (service.UpdateRaceRan(model))
             {
                 TempData["SaveResult"] = "Your race was updated.";
-                return RedirectToAction("IndexRan");
+                return RedirectToAction("IndexAll");
             }
 
             ModelState.AddModelError("", "Your race could not be updated.");
@@ -538,7 +538,7 @@ namespace BlueBadgeRunTracker.Controllers
 
             TempData["SaveResult"] = "Your shoe was deleted.";
 
-            return RedirectToAction("IndexRan");
+            return RedirectToAction("IndexAll");
         }
 
         //---------------------------------------
@@ -594,7 +594,7 @@ namespace BlueBadgeRunTracker.Controllers
             if (service.ConvertFromInterestedToRan(model))
             {
                 TempData["SaveResult"] = "Your race was updated.";
-                return RedirectToAction("IndexRan");
+                return RedirectToAction("IndexAll");
             }
 
             ModelState.AddModelError("", "Your race could not be updated.");

@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    /*background: url(/assets/runningshoes.jpg) center fixed no-repeat;*/
+    font-family: "Comic Sans MS";
 }
 
 .backgroundImage {
@@ -11,6 +11,8 @@
     width: 100vw;
     margin: auto;
     filter: blur(3.0px);
+    /*-webkit-filter: grayscale(100%); // makes the pic black and white
+    filter: grayscale(100%);*/
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -36,11 +38,11 @@ textarea {
 .jumbotron {
     text-align: center;
     opacity: 0.85;
-    background: #D6992E;
+    background: #E9BB6B;
 }
 
 .sectionDescription {
-    background: #D6992E;
+    background: #E9BB6B;
     text-align: center;
     padding: .25px 2px 2px 2px;
     margin-bottom: 15px;
@@ -57,7 +59,7 @@ tr:nth-child(even){
 }
 
 tr:nth-child(odd) {
-    background: #D6992E;
+    background: #E9BB6B;
     opacity: 0.85;
 }
 
@@ -66,9 +68,18 @@ tr:nth-child(odd) {
 }
 
 .form-horizontal, .dl-horizontal, .manageView {
-    background: #D6992E;
+    background: #E9BB6B;
     opacity: 0.85;
+}
+
+table, th, td{
+    border: 2px solid black;
+}
+
+.PageHeading {
+   
 }
 
 
 /*#B3AFAF -- original color or home backgrounds and <tr>s*/
+/* #D6992E -- original color of main sections on home page*/
