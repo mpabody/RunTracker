@@ -37,7 +37,7 @@ namespace BlueBadgeRunTracker.Controllers
 
 
 
-        // Index All races
+        // Index All races-----------------------------------------------------------------------------------
 
         // ---Races Interested---
 
@@ -172,6 +172,8 @@ namespace BlueBadgeRunTracker.Controllers
 
             return View(newModel);
         }
+
+        //------------------------------------------------------------------------------------------------
 
         // GET: Races Interested
         [ActionName("IndexInterested")]

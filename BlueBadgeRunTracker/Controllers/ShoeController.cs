@@ -75,7 +75,7 @@ namespace BlueBadgeRunTracker.Controllers
         // POST : Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ShoeCreate model, string returnUrl)
+        public ActionResult Create(ShoeCreate model, string returnUrl) //-------------------RETURN URL
         {
             if (!ModelState.IsValid) return View(model);
 

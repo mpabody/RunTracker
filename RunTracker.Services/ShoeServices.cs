@@ -66,7 +66,7 @@ namespace RunTracker.Services
                         .Single(s => s.ShoeID == id && s.UserID == _userID);
 
                 return
-                    new ShoeDetail
+                    new ShoeDetail  //                                                  ICollections
                     {
                         ShoeID = entity.ShoeID,
                         Brand = entity.Brand,
